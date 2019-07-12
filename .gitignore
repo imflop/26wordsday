@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+.coverage
+*.pyc
+*.sqlite3
+*.db
+media/
+staticfiles/
+.env_local
+local.py
