@@ -1,7 +1,8 @@
-import json
 import datetime
-import pytz
+import json
 from string import ascii_lowercase
+
+import pytz
 
 
 class Words:
@@ -24,7 +25,6 @@ class Words:
                 "model": "words.word",
                 "pk": int(idx),
                 "fields": {
-                    "stats": None,
                     "text": str(word),
                     "translation": "",
                     "transcription": "",
