@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 class WordStat(models.Model):
     is_used = models.BooleanField(verbose_name=_('Использовалось'), default=False)
     date_used = models.DateTimeField(verbose_name=_('Дата использвания'), default=timezone.now)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Пользователь'))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Пользователь'), on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('Статистика')

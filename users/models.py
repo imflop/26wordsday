@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class User(AbstractUser):
     notification = models.BooleanField(verbose_name=_('Уведомления'), default=False)
-    phone_number = models.CharField(verbose_name=_('Номер телефона'), default=0)
+    phone_number = models.CharField(verbose_name=_('Номер телефона'), max_length=32, default=0)
 
     class Meta:
         verbose_name = _('Пользователь')
