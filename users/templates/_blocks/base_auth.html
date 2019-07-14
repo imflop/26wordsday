@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block static_styles %}
+    {{ block.super }}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+    <form class="form-sign-in" method="POST">
+        {% csrf_token %}
+
+        {% block auth_header %}
+            <div class="text-center mb-4">
+                <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">26 Words Day</h1>
+
+                {% block auth_title %}
+                {% endblock %}
+
+                <p><code>{% include 'blocks/form/non_field_errors.html' with form=form only %}</code></p>
+                <p><code>{% include 'blocks/form/fields_errors.html' with form=form only %}</code></p>
+            </div>
+        {% endblock %}
+
+        {% block auth_content %}
+        {% endblock %}
+
+        {% block auth_footer %}
+            <p class="mt-5 mb-3 text-muted text-center">© Twentysixwordsday, {% now 'Y' %}</p>
+        {% endblock %}
+    </form>
+{% endblock %}
