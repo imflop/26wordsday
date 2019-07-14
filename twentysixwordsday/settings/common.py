@@ -22,6 +22,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
+# COOKIE FILES
+# ------------------------------------------------------------------------------
+
+SET_EXPIRY = 3600  # 1 hour
+
+# CONNECTION
+# ------------------------------------------------------------------------------
+USE_HTTPS = False
+
+# SITE
+# ------------------------------------------------------------------------------
+DOMAIN = env.get_value('DOMAIN', default='127.0.0.1:8000')
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -78,6 +90,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#login-url
+LOGIN_URL = '/'
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
+LOGIN_REDIRECT_URL = '/words/'
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#logout-redirect-url
+LOGOUT_REDIRECT_URL = '/'
+
 # AUTH USER MODEL
 # https://docs.djangoproject.com/en/2.1/topics/auth/customizing/#substituting-a-custom-user-model
 
@@ -95,7 +116,7 @@ TEMPLATES = [
         # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        'DIRS': [str(ROOT_DIR.path('templates'))],
+        'DIRS': [os.path.join(BASE_DIR, '../templates'), os.path.join(BASE_DIR, '../users/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
@@ -133,10 +154,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-STATIC_URL = '/static/'
+STATIC_URL = '/assets/'
 
 STATIC_ROOT = str(ROOT_DIR("staticfiles"))
 
+STATICFILES_DIRS = [
+    str(ROOT_DIR("assets")),
+]
 
 # MEDIA FILES CONFIGURATION
 # ------------------------------------------------------------------------------
