@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+{% if form.errors %}
+    <div class="fields-errors">
+        {% for field in form.visible_fields %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    {{ error|escape }}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
