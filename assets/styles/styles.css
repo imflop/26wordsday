@@ -1,0 +1,19 @@
+/* STYLES ------------------------------------------------------------------------------------------------------------*/
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.form-sign-in {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.non-field-errors, .fields-errors {
+    color: red;
+    font-size: 14px;
+}
