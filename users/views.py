@@ -1,16 +1,16 @@
 from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView
-from django.db import models
 from django.shortcuts import render
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
 from django.views.generic import TemplateView, FormView
+from django.views.generic.edit import BaseFormView
 
 from users.forms import UserAuthenticationForm, UserPasswordResetForm, UserRegistrationForm, \
     UserPasswordResetConfirmForm, UserAccountActivationRepeat
 from users.models import User
-from utils.email import EmailManager
+from users.tasks import send_activation_email, send_password_reset_email
 
 
 class UserLoginView(LoginView):
@@ -57,6 +57,12 @@ class UserPasswordResetView(PasswordResetView):
     """
     form_class = UserPasswordResetForm
 
+    def form_valid(self, form):
+        email = form.cleaned_data.get('email')
+        send_password_reset_email.delay(email=email)
+
+        return super(BaseFormView, self).form_valid(form)
+
 
 class UserPasswordResetConfirmView(PasswordResetConfirmView):
     """
@@ -79,9 +85,7 @@ class UserRegistrationView(FormView):
         user.is_active = False
         user.set_password(form.cleaned_data.get('password'))
         user.save()
-
-        email_manager = EmailManager()
-        email_manager.send_activation_email(user)
+        send_activation_email.delay(email=user.email)
 
         return super().form_valid(form)
 
@@ -96,9 +100,6 @@ class SendActivationEmail(FormView):
 
     def form_valid(self, form):
         email = form.cleaned_data.get('email')
-        user = User.objects.filter(models.Q(username=email) | models.Q(email=email)).first()
-        if user and not user.is_active:
-            email_manager = EmailManager()
-            email_manager.send_activation_email(user)
+        send_activation_email.delay(email=email)
 
         return super().form_valid(form)

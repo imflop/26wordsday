@@ -27,10 +27,12 @@ class UserAuthenticationForm(StyledForm, AuthenticationForm):
         self.fields['remember_me'].widget.attrs['class'] += ' remember-me-checkbox'
 
 
-class UserPasswordResetForm(StyledForm, PasswordResetForm):
+class UserPasswordResetForm(StyledForm):
     """
     Форма для сброса пароля пользователем (Расширение стандартной формы 'PasswordResetForm')
     """
+    email = forms.EmailField(label=_('Email'), max_length=254)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['class'] += ' form-control floating-label-input'
