@@ -13,22 +13,20 @@
         <title>26 words day</title>
     </head>
     <body>
-        {% block content %}
 
-            {% block navbar %}
-                {% include "blocks/navbar.html" %}
-            {% endblock %}
-            <div class="container-fluid">
-                <div class="row">
-                    {% block page_content %}
-                    {% endblock %}
-                </div>
-            </div>
-            {% block footer %}
-                {% include "blocks/footer.html" %}
-            {% endblock %}
-
+        {% block navbar %}
+            {% include "blocks/navbar.html" %}
         {% endblock %}
+        <div class="container-fluid">
+            <div class="row">
+                {% block page_content %}
+                {% endblock %}
+            </div>
+        </div>
+        {% block footer %}
+            {% include "blocks/footer.html" %}
+        {% endblock %}
+
 
         {% block static_js %}
             {% include 'blocks/_scripts.html' %}

@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import Word, WordStat
 
 
@@ -7,6 +8,7 @@ class WordAdmin(admin.ModelAdmin):
     list_display = ('text', 'translation', 'transcription')
     search_fields = ('text', 'translation')
     ordering = ('text',)
+    prepopulated_fields = {'slug': ('text',)}
 
 
 @admin.register(WordStat)
