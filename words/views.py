@@ -2,14 +2,11 @@ from itertools import chain
 from random import choice
 
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 
 from .models import Word
 
 
-@method_decorator(login_required(login_url='login'), name='dispatch')
 class WordListView(ListView):
     model = Word
     template_name = 'words_list.html'

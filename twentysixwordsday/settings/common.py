@@ -29,7 +29,7 @@ SET_EXPIRY = 3600  # 1 hour
 
 # CONNECTION
 # ------------------------------------------------------------------------------
-USE_HTTPS = False
+USE_HTTPS = env.get_value('USE_HTTPS', default=False)
 
 # SITE
 # ------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ TEMPLATES = [
         # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        'DIRS': [os.path.join(BASE_DIR, '../templates'), os.path.join(BASE_DIR, '../users/templates')],
+        'DIRS': [str(ROOT_DIR.path('templates')), str(ROOT_DIR.path('users/templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug

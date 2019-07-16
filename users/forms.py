@@ -73,7 +73,7 @@ class UserRegistrationForm(StyledForm, forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('password', 'username', 'phone_number')
+        fields = ('password', 'username', )
         widgets = {
             'username': forms.EmailInput(attrs={
                 'id': 'id_username',
