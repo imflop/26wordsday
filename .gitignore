@@ -8,3 +8,5 @@ media/
 staticfiles/
 .env_local
 local.py
+venv/
+*.json
