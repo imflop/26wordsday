@@ -3,6 +3,7 @@ import json
 from string import ascii_lowercase
 
 import pytz
+from django.utils.text import slugify
 
 
 class Words:
@@ -26,6 +27,7 @@ class Words:
                 "pk": int(idx),
                 "fields": {
                     "text": str(word),
+                    "slug": self._get_slugify(word),
                     "translation": "",
                     "transcription": "",
                     "created_at": time_now_tz,
@@ -42,6 +44,9 @@ class Words:
             data_store = json.load(f)
             words = *data_store.keys(),
         return words
+
+    def _get_slugify(self, value: str) -> str:
+        return slugify(value, allow_unicode=True)
 
     def _get_number_of_letters(self, word) -> int:
         return sum(1 for _ in word)
