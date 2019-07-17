@@ -1,9 +1,10 @@
 import datetime
 import json
+import re
+import unicodedata
 from string import ascii_lowercase
 
 import pytz
-from django.utils.text import slugify
 
 
 class Words:
@@ -45,8 +46,14 @@ class Words:
             words = *data_store.keys(),
         return words
 
-    def _get_slugify(self, value: str) -> str:
-        return slugify(value, allow_unicode=True)
+    def _get_slugify(self, value: str, allow_unicode=False) -> str:
+        value = str(value)
+        if allow_unicode:
+            value = unicodedata.normalize('NFKC', value)
+        else:
+            value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
+        value = re.sub(r'[^\w\s-]', '', value).strip().lower()
+        return re.sub(r'[-\s]+', '-', value)
 
     def _get_number_of_letters(self, word) -> int:
         return sum(1 for _ in word)
