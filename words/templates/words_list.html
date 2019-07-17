@@ -4,7 +4,7 @@
     <div class="col-md-12 col-sm-12">
         <ul>
             {% for d in words_list %}
-                <li>{{ d.text }}</li>
+                <li><a href="{% url "word-detail" d.slug d.pk %}">{{ d.text }}</a></li>
             {% endfor %}
         </ul>
     </div>

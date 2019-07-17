@@ -1,6 +1,6 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -19,6 +19,7 @@ class WordStat(models.Model):
 
 class Word(models.Model):
     text = models.CharField(verbose_name=_('Текст'), max_length=128, unique=True)
+    slug = models.CharField(verbose_name=_('Slug'), max_length=128, default='')
     translation = models.CharField(verbose_name=_('Перевод'), max_length=128, blank=True, null=True)
     transcription = models.CharField(verbose_name=_('Транскрипция'), max_length=128, blank=True, null=True)
     created_at = models.DateTimeField(verbose_name=_('Дата добавления'), auto_now_add=True)
