@@ -2,11 +2,17 @@
 
 {% block page_content %}
     <div class="col-md-12 col-sm-12">
-        <ul>
-            {% for d in words_list %}
-                <li><a href="{% url "word-detail" d.slug d.pk %}">{{ d.text }}</a></li>
-            {% endfor %}
-        </ul>
+        {% for w in words %}
+            <div class="card text-center mb-5">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">{{ w.translation }}</h5>
+                    <h5 class="card-title">
+                        <a href="{% url "word-detail" w.slug w.pk %}">{{ forloop.counter }}:{{ w.text }}</a>
+                    </h5>
+                    <h5 class="card-title">{{ w.transcription }}</h5>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
 

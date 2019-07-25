@@ -71,6 +71,12 @@ class Words:
                 count += 1
         return count
 
+    def total_letters(self):
+        letters = 0
+        for idx, word in enumerate(self.words, start=1):
+            letters += self._get_number_of_letters(word)
+        return letters
+
 
 if __name__ == '__main__':
     w = Words()
