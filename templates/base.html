@@ -1,8 +1,10 @@
 <!doctype html>
 <html lang="en">
     <head>
+        {% load staticfiles %}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
 
         {% load staticfiles %}
 
@@ -14,18 +16,44 @@
     </head>
     <body>
 
-        {% block navbar %}
-            {% include "blocks/navbar.html" %}
-        {% endblock %}
-        <div class="container">
-            <div class="row">
-                {% block page_content %}
+    <div class="container-fluid app-base-container">
+        <div class="row app-base-row">
+            {% block sidebar %}
+                {% include 'blocks/page/_sidebar.html' %}
+            {% endblock %}
+            <div class="col-lg-10 col-sm-12">
+                {% block navbar %}
+                    {% include 'blocks/page/_navbar.html' %}
                 {% endblock %}
+                {% block toolbar %}
+                    {% include 'blocks/page/_toolbar.html' %}
+                {% endblock %}
+                <div class="row app-content">
+                    {% block words_description %}
+                        {% include 'blocks/page/_words_description.html' %}
+                    {% endblock %}
+                    {% block words_list %}
+                        {% include 'blocks/page/_words_list.html' %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
-        {% block footer %}
-            {% include "blocks/footer.html" %}
-        {% endblock %}
+    </div>
+
+    <!-- todo: Подключить вывод слов и описания в соответствующие блоки -->
+
+{#        {% block navbar %}#}
+{#            {% include "blocks/navbar.html" %}#}
+{#        {% endblock %}#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                {% block page_content %}#}
+{#                {% endblock %}#}
+{#            </div>#}
+{#        </div>#}
+{#        {% block footer %}#}
+{#            {% include "blocks/footer.html" %}#}
+{#        {% endblock %}#}
 
 
         {% block static_js %}
