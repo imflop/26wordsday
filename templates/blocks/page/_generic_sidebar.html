@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<div class="col app-sidebar-col js-twentysixwords_sidebar" data-is-open="{{ app_main_sidebar.is_open_mapped }}">
+    <div class="row align-items-center sidebar-segment-row sidebar-header">
+        <div class="col-12">
+            <div class="d-flex align-items-center logo">
+                <img src="/assets/img/logo_img.png" height="22" width="23">
+                <span class="hide-on-sidebar-close">26 Words Day</span>
+            </div>
+        </div>
+    </div>
+    <div class="row h-auto sidebar-segment-row hide-on-sidebar-close">
+        <div class="col-12">
+            <div class="d-inline-flex w-100 profile-info-wrapper">
+                <div class="profile-image-wrapper">
+                  <img src="/assets/img/avatar.jpg" alt="avatar" class="h-100 w-100">
+                </div>
+                <div class="profile-description-wrapper">
+                    <div class="profile-description profile-description-username">Евгений Петров</div>
+                    <div class="profile-description">Изучил слов: 2011</div>
+                    <div class="profile-description">Любимое слово: Котейка</div>
+                    <div class="profile-description">Перейти в профиль</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row h-100 sidebar-segment-row">
+        <div class="col-12 sidebar-body-col">
+            {% for button in app_main_sidebar.buttons.values %}
+                <div class="sidebar-btn-wrapper js-sidebar_btn_main_wrapper" data-is-open="{{ button.is_open_mapped }}">
+                    {% include 'blocks/page/_sidebar_btn.html' with button=button only %}
+                    {% if button.is_dropdown %}
+                        <div class="sidebar-sub-btn-wrapper js-sidebar_btn_sub_wrapper">
+                            {% for sub_button in button.sub_buttons.values %}
+                                {% include 'blocks/page/_sidebar_btn.html' with button=sub_button only %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row sidebar-segment-row sidebar-footer">
+        <div class="col-12">
+            <div class="sidebar-toolbar">
+                <button type="button" class="sidebar-toolbar-btn js-sidebar_toggle_btn">
+                    <i class="material-icons app-base-icon hide-on-sidebar-open">keyboard_arrow_right</i>
+                    <i class="material-icons app-base-icon hide-on-sidebar-close">keyboard_arrow_left</i>
+                    <span class="hide-on-sidebar-close">Свернуть</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

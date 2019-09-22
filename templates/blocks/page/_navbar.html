@@ -1,13 +1,42 @@
 {% load staticfiles %}
 
-<div class="row app-base-navbar">
-    <div class="navbar-item">
-        <button type="button" class="btn btn-primary navbar-btn">Кнопка 1</button>
+<div class="row app-navbar">
+    <div class="col">
+        {% block navbar_left_col %}
+            <div class="row">
+                {% block navbar_top_row %}
+                    <div class="col-lg-12 d-flex align-items-center navbar-date-info-row">
+                        <i class="material-icons app-base-icon">schedule</i> {% now 'j F Y' %} ({% now 'l' %})
+                    </div>
+                {% endblock %}
+                <div class="col-lg-12">
+                    <div class="row">
+                        {% block navbar_bottom_row %}
+                            <div class="navbar-item">
+                                <button type="button" class="navbar-btn active">Подборка дня</button>
+                             </div>
+                            <div class="navbar-item">
+                                <button type="button" class="navbar-btn">Комментарии</button>
+                             </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
     </div>
-    <div class="navbar-item">
-        <button type="button" class="btn btn-primary navbar-btn">Кнопка 2</button>
-    </div>
-    <div class="navbar-item ml-auto">
-        <button type="button" class="btn btn-primary navbar-btn">Кнопка 3</button>
+    <div class="col navbar-app-update-info d-lg-block d-none">
+        {% block navbar_right_col %}
+            <div class="row">
+                <div class="col-12 d-flex align-items-center navbar-app-update-title">
+                    До следующего обновления
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex align-items-center navbar-app-update-schedule">
+                    <i class="material-icons app-base-icon">access_alarm</i>
+                    <span>13:14:20</span>
+                </div>
+            </div>
+        {% endblock %}
     </div>
 </div>
