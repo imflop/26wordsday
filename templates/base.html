@@ -16,45 +16,20 @@
     </head>
     <body>
 
-    <div class="container-fluid app-base-container">
-        <div class="row app-base-row">
-            {% block sidebar %}
-                {% include 'blocks/page/_sidebar.html' %}
-            {% endblock %}
-            <div class="col-lg-10 col-sm-12">
-                {% block navbar %}
-                    {% include 'blocks/page/_navbar.html' %}
+        <div class="container-fluid app-base-container">
+            <div class="row app-base-row">
+                {% block sidebar %}
+                    {% include 'blocks/page/_generic_sidebar.html' %}
                 {% endblock %}
-                {% block toolbar %}
-                    {% include 'blocks/page/_toolbar.html' %}
-                {% endblock %}
-                <div class="row app-content">
-                    {% block words_description %}
-                        {% include 'blocks/page/_words_description.html' %}
+                <div class="col app-content-col">
+                    {% block navbar %}
+                        {% include 'blocks/page/_navbar.html' %}
                     {% endblock %}
-                    {% block words_list %}
-                        {% include 'blocks/page/_words_list.html' %}
+                    {% block content %}
                     {% endblock %}
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- todo: Подключить вывод слов и описания в соответствующие блоки -->
-
-{#        {% block navbar %}#}
-{#            {% include "blocks/navbar.html" %}#}
-{#        {% endblock %}#}
-{#        <div class="container">#}
-{#            <div class="row">#}
-{#                {% block page_content %}#}
-{#                {% endblock %}#}
-{#            </div>#}
-{#        </div>#}
-{#        {% block footer %}#}
-{#            {% include "blocks/footer.html" %}#}
-{#        {% endblock %}#}
-
 
         {% block static_js %}
             {% include 'blocks/_scripts.html' %}
