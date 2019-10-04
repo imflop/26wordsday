@@ -25,8 +25,12 @@
                     {% block navbar %}
                         {% include 'blocks/page/_navbar.html' %}
                     {% endblock %}
-                    {% block content %}
-                    {% endblock %}
+                    <div class="row content-main-row">
+                        <div class="col-12">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

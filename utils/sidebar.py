@@ -11,19 +11,19 @@ class MenuElement:
     Абстрактный класс кнопки
     """
     @staticmethod
-    def prepare_html_params(html_params: Collection) -> str:
+    def prepare_html_params(html_params: list) -> str:
         """
         Метод для подготовки html-атрибутов кнопки
-        :param html_params: Collection, атрибуты кнопки
+        :param html_params: list, атрибуты кнопки
         :return: str
         """
         return ' '.join(html_params)
 
     @staticmethod
-    def prepare_css_classes(css_classes: Collection) -> str:
+    def prepare_css_classes(css_classes: list) -> str:
         """
         Метод для подготовки html-атрибутов кнопки
-        :param css_classes: Collection, классы кнопки
+        :param css_classes: list, классы кнопки
         :return: str
         """
         return ' '.join(css_classes)
@@ -66,15 +66,48 @@ class AbstractMenuButton(MenuElement):
     def __init__(self,
                  key: str,
                  title: str,
-                 html_params: Collection,
-                 css_classes: Collection,
+                 html_params: list,
+                 css_classes: list,
                  icon: str = None):
 
         self.key = key
         self.title = title
         self.icon = icon
-        self.html_params = self.prepare_html_params(html_params)
-        self.css_classes = self.prepare_css_classes(css_classes)
+        self.html_params_collection = html_params
+        self.css_classes_collection = css_classes
+
+    @property
+    def html_params(self) -> str:
+        """
+        Property для получения строки с html-атрибутами
+        :return: str
+        """
+        return self.prepare_html_params(self.html_params_collection)
+
+    @property
+    def css_classes(self) -> str:
+        """
+        Property для получения строки с css-атрибутами
+        :return: str
+        """
+        return self.prepare_css_classes(self.css_extra_classes + self.css_common_classes + self.css_classes_collection)
+
+    @property
+    def css_common_classes(self) -> list:
+        """
+        Property для получения общих css-классов для всех кнопок меню
+        :return: list
+        """
+        return ['waves-btn']
+
+    @property
+    @abc.abstractmethod
+    def css_extra_classes(self) -> list:
+        """
+        Property для установки css-экстра-классов для кнопки
+        :return: list
+        """
+        return []
 
     def is_single(self) -> bool:
         """
@@ -95,14 +128,14 @@ class AbstractMenuButton(MenuElement):
         Метод для блокировки кнопки
         :return: None
         """
-        self.css_classes += ''
+        self.css_classes_collection += ''
 
     def set_as_active(self) -> None:
         """
         Метод для активации кнопки
         :return: None
         """
-        self.css_classes += 'active'
+        self.css_classes_collection += ['active']
 
     def activate_by_url(self, url: str) -> bool:
         """
@@ -122,14 +155,6 @@ class AbstractMenuButton(MenuElement):
         """
         return getattr(self, 'active_url', '#')
 
-    @abc.abstractproperty
-    def css_extra_classes(self) -> str:
-        """
-        Метод для установки css-экстра-классов для кнопки
-        :return: str
-        """
-        pass
-
 
 class SidebarMenuSingleButton(AbstractMenuButton):
     """
@@ -142,14 +167,15 @@ class SidebarMenuSingleButton(AbstractMenuButton):
         self.parent = parent
         super().__init__(*args, **kwargs)
 
-    def css_extra_classes(self) -> str:
+    @property
+    def css_extra_classes(self) -> list:
         """
         Метод для установки css-экстра-классов для кнопки
-        :return: str
+        :return: list
         """
-        extra_css = 'sidebar-btn'
+        extra_css = ['sidebar-btn']
         if self.parent is not None:
-            extra_css = 'sidebar-sub-btn'
+            extra_css = ['sidebar-sub-btn']
         return extra_css
 
 
@@ -180,12 +206,13 @@ class SidebarMenuDropdownButton(AbstractMenuButton):
         """
         return TemplateVarMapper.boolean_to_str_js_compatible(self.is_open)
 
-    def css_extra_classes(self) -> str:
+    @property
+    def css_extra_classes(self) -> list:
         """
         Метод для установки css-экстра-классов для кнопки
-        :return: str
+        :return: list
         """
-        return 'sidebar-btn js-sidebar_dropdown_toggle_btn'
+        return ['sidebar-btn', 'js-sidebar_dropdown_toggle_btn']
 
 
 class AbstractSidebarMenu:

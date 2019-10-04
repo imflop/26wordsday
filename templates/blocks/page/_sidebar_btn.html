@@ -1,6 +1,6 @@
 {% load staticfiles %}
 
-<a href="{{ button.get_url }}" class="{{ button.css_extra_classes }} {{ button.css_classes }}" {{ button.html_params }}>
+<a href="{{ button.get_url }}" class="{{ button.css_classes }}" {{ button.html_params }}>
     {% if button.icon %}
         <i class="material-icons app-base-icon">{{ button.icon }}</i>
     {% endif %}
