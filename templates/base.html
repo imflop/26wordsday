@@ -16,21 +16,22 @@
     </head>
     <body>
 
-        <div class="container-fluid app-base-container">
-            <div class="row app-base-row">
+        <!-- Соглашение о наименовании селекторов:
+        Идентиф-ры: {группа (если нет - app)}-{dj app (если нет - base)}-{bs container/row/col}-{мод-р (при наличии)}
+        Классы: {группа}-{dj app (если нет - не указывать)-{bs container/row/col (если нет - не указывать)}-{модификатор}}
+         -->
+
+        <div id="app-base-container" class="container-fluid">
+            <div id="app-base-row" class="row">
                 {% block sidebar %}
                     {% include 'blocks/page/_generic_sidebar.html' %}
                 {% endblock %}
-                <div class="col app-content-col">
+                <div id="app-base-content-col" class="col">
                     {% block navbar %}
                         {% include 'blocks/page/_navbar.html' %}
                     {% endblock %}
-                    <div class="row content-main-row">
-                        <div class="col-12">
-                            {% block content %}
-                            {% endblock %}
-                        </div>
-                    </div>
+                    {% block content %}
+                    {% endblock %}
                 </div>
             </div>
         </div>
