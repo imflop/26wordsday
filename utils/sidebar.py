@@ -90,7 +90,8 @@ class AbstractMenuButton(MenuElement):
         Property для получения строки с css-атрибутами
         :return: str
         """
-        return self.prepare_css_classes(self.css_extra_classes + self.css_common_classes + self.css_classes_collection)
+        css_classes = self.css_extra_classes + self.css_common_classes + self.css_classes_collection
+        return self.prepare_css_classes(css_classes)
 
     @property
     def css_common_classes(self) -> list:
@@ -254,13 +255,14 @@ class AbstractSidebarMenu:
         """
         for button_key, button in self.buttons.items():
             button.activate_by_url(self._current_url)
-            for sub_button in button.sub_buttons.values():
-                sub_button.parent = button_key
-                url_check_result = sub_button.activate_by_url(self._current_url)
-                if url_check_result:
-                    parent_button = self.buttons[sub_button.parent]
-                    parent_button.set_as_active()
-                    parent_button.is_open = True
+            if isinstance(button, SidebarMenuDropdownButton):
+                for sub_button in button.sub_buttons.values():
+                    sub_button.parent = button_key
+                    url_check_result = sub_button.activate_by_url(self._current_url)
+                    if url_check_result:
+                        parent_button = self.buttons[sub_button.parent]
+                        parent_button.set_as_active()
+                        parent_button.is_open = True
 
     def build_menu(self) -> Type['AbstractSidebarMenu']:
         """
@@ -279,32 +281,28 @@ class TwentySixWordsDaySidebarMenu(AbstractSidebarMenu):
     """
     def set_buttons(self) -> OrderedDict:
         return OrderedDict({
-            'main': SidebarMenuDropdownButton(
-                key='home',
-                icon='home',
-                title='Главная',
+            'words_of_the_day': SidebarMenuSingleButton(
+                key='words_of_the_day',
+                icon='landscape',
+                title='26 слов дня',
                 html_params=[],
                 css_classes=[],
-                is_open=False,
-                toggle_on_icon='keyboard_arrow_down',
-                toggle_off_icon='keyboard_arrow_up',
-                sub_buttons=OrderedDict({
-                    'main__words': SidebarMenuSingleButton(
-                        key='words',
-                        icon='list',
-                        title='Слова',
-                        html_params=[],
-                        css_classes=[],
-                        active_url=reverse_lazy('words:words-list'),
-                    ),
-                    'main__history': SidebarMenuSingleButton(
-                        key='history',
-                        icon='schedule',
-                        title='История',
-                        html_params=[],
-                        css_classes=[],
-                        active_url='',
-                    )
-                })
+                active_url='/'
+            ),
+            'previous_words_of_the_day': SidebarMenuSingleButton(
+                key='previous_words_of_the_day',
+                icon='schedule',
+                title='Предыдущие дни',
+                html_params=[],
+                css_classes=[],
+                active_url='#'
+            ),
+            'learned_words': SidebarMenuSingleButton(
+                key='learned_words',
+                icon='layers',
+                title='Изученные слова',
+                html_params=[],
+                css_classes=[],
+                active_url='#'
             )
         })
