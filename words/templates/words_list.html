@@ -1,20 +1,63 @@
 {% extends "base.html" %}
 
-{% block page_content %}
-    <div class="col-md-12 col-sm-12">
-        {% for w in words %}
-            <div class="card text-center mb-5">
-                <div class="card-body">
-                    <h5 class="card-title text-muted">{{ w.translation }}</h5>
-                    <h5 class="card-title">
-                        <a href="{% url "word-detail" w.slug w.pk %}">{{ forloop.counter }}:{{ w.text }}</a>
-                    </h5>
-                    <h5 class="card-title">{{ w.transcription }}</h5>
+{% block content %}
+    <!-- При переопределении блока 'content' - задавать 'id' родительскому контейнеру чтобы не было путаницы в стилях -->
+    <div id="content-words-row" class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-8 content-col">
+                    <div class="row">
+                        <div class="col-12 content-title">ПОДБОРКА #223</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 content-col">
+                    ВРЕМЯ: 00:00:00
+                </div>
+                <div class="col-12 content-col">
+                    <div class="row">
+                        <div class="col-12 content-sub-title">ТЭГИ</div>
+                        <div class="col-12">
+                            <span class="badge badge-primary words-tag-badge">Здоровье</span>
+                            <span class="badge badge-primary words-tag-badge">Природа</span>
+                            <span class="badge badge-primary words-tag-badge">Спорт</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        {% endfor %}
+            <div class="row content-words-row-word-cards">
+                <div class="col content-col">
+                    <div class="row justify-content-center">
+                        {% include 'blocks/page/_word_card.html' %}
+                        {% include 'blocks/page/_word_card.html' %}
+                        {% include 'blocks/page/_word_card.html' %}
+                        {% include 'blocks/page/_word_card.html' %}
+                        {% include 'blocks/page/_word_card.html' %}
+                        {% include 'blocks/page/_word_card.html' %}
+                    </div>
+                </div>
+                <div class="col content-col content-words-col-detail-sidebar">
+                    Описание
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
-{% block js %}
-{% endblock %}
+{#{% block page_content %}#}
+{#    <div class="col-md-12 col-sm-12">#}
+{#        {% for w in words %}#}
+{#            <div class="card text-center mb-5">#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title text-muted">{{ w.translation }}</h5>#}
+{#                    <h5 class="card-title">#}
+{#                        <a href="{% url "word-detail" w.slug w.pk %}">{{ forloop.counter }}:{{ w.text }}</a>#}
+{#                    </h5>#}
+{#                    <h5 class="card-title">{{ w.transcription }}</h5>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#{% endblock %}#}
+{##}
+{#{% block js %}#}
+{#{% endblock %}#}

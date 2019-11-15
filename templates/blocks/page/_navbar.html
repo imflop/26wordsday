@@ -1,0 +1,42 @@
+{% load staticfiles %}
+
+<div id="navbar-base-row" class="row">
+    <div class="col">
+        {% block navbar_left_col %}
+            <div class="row">
+                {% block navbar_top_row %}
+                    <div class="col-lg-12 navbar-col-date-info">
+                        <i class="material-icons app-base-icon">schedule</i> {% now 'j F Y' %} ({% now 'l' %})
+                    </div>
+                {% endblock %}
+                <div class="col-lg-12">
+                    <div class="row navbar-row-menu">
+                        {% block navbar_bottom_row %}
+                            <div class="navbar-item">
+                                <button type="button" class="navbar-btn active">Подборка дня</button>
+                             </div>
+                            <div class="navbar-item">
+                                <button type="button" class="navbar-btn">Комментарии</button>
+                             </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+    <div class="col navbar-col-updates-info d-lg-block d-none">
+        {% block navbar_right_col %}
+            <div class="row">
+                <div class="col-12 navbar-col-updates-title">
+                    До следующего обновления
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 navbar-col-updates-schedule">
+                    <i class="material-icons app-base-icon">access_alarm</i>
+                    <span>13:14:20</span>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+</div>

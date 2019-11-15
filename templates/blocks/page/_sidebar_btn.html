@@ -1,0 +1,15 @@
+{% load staticfiles %}
+
+<a href="{{ button.get_url }}" class="{{ button.css_classes }}" {{ button.html_params }}>
+    {% if button.icon %}
+        <i class="material-icons app-base-icon">{{ button.icon }}</i>
+    {% endif %}
+    <span class="hide-on-sidebar-close">{{ button.title }}</span>
+    {% if button.toggle_on_icon %}
+        <i class="material-icons ml-auto hide-on-sidebar-close hide-on-dropdown-close">{{ button.toggle_on_icon }}</i>
+    {% endif %}
+    {% if button.toggle_off_icon %}
+        <i class="material-icons ml-auto hide-on-sidebar-close show-on-dropdown-close">{{ button.toggle_off_icon }}</i>
+    {% endif %}
+    <span class="inner-btn-border"></span>
+</a>

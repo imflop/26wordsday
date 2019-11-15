@@ -120,7 +120,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-            'debug': '',
+            # 'debug': '',
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -128,6 +128,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # Our stuff: custom template context processors go here
+                'utils.context_processors.twentysixwordsday_context_processor',
             ],
         },
     },

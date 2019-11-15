@@ -2,4 +2,9 @@
 
 html, body {
     height: 100%;
+    font-size: 24px;
+}
+
+body {
+    background-color: #eeeeee;
 }

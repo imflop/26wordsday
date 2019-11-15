@@ -1,8 +1,10 @@
 <!doctype html>
 <html lang="en">
     <head>
+        {% load staticfiles %}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
 
         {% load staticfiles %}
 
@@ -14,19 +16,25 @@
     </head>
     <body>
 
-        {% block navbar %}
-            {% include "blocks/navbar.html" %}
-        {% endblock %}
-        <div class="container">
-            <div class="row">
-                {% block page_content %}
+        <!-- Соглашение о наименовании селекторов:
+        Идентиф-ры: {группа (если нет - app)}-{dj app (если нет - base)}-{bs container/row/col}-{мод-р (при наличии)}
+        Классы: {группа}-{dj app (если нет - не указывать)-{bs container/row/col (если нет - не указывать)}-{модификатор}}
+         -->
+
+        <div id="app-base-container" class="container-fluid">
+            <div id="app-base-row" class="row">
+                {% block sidebar %}
+                    {% include 'blocks/page/_generic_sidebar.html' %}
                 {% endblock %}
+                <div id="app-base-content-col" class="col">
+                    {% block navbar %}
+                        {% include 'blocks/page/_navbar.html' %}
+                    {% endblock %}
+                    {% block content %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
-        {% block footer %}
-            {% include "blocks/footer.html" %}
-        {% endblock %}
-
 
         {% block static_js %}
             {% include 'blocks/_scripts.html' %}
