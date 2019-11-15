@@ -9,4 +9,6 @@ staticfiles/
 .env_local
 local.py
 venv/
+.venv
+celerybeat-schedule
 *.json

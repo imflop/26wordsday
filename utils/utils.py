@@ -16,7 +16,7 @@ def get_translation(word: str) -> dict:
     )
     translation = ''
     transcription = ''
-    if response.status_code is 200:
+    if response.status_code == 200:
         r = response.json()
         if r['def']:
             translation = r['def'][0]['tr'][0]['text']
