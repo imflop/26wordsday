@@ -20,7 +20,7 @@ def get_twenty_six_words_of_day() -> Optional[bool]:
         ids = Word.objects.filter(first_letter=_).values_list('pk', flat=True)
         if ids:
             item = Word.objects.filter(pk=choice(ids)).first()
-            if item.translation is '' and item.transcription is '':
+            if item.translation == '' and item.transcription == '':
                 result = get_translation(item.text)
                 item.translation = result.get('translation')
                 item.transcription = result.get('transcription')
