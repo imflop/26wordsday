@@ -27,7 +27,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        export DJANGO_SETTINGS_MODULE=twentysixwordsday.settings.test
+        export DJANGO_SETTINGS_MODULE=twentysixwordsday.settings.local
         pytest
     - name: GitHub Action for Slack
       uses: Ilshidur/action-slack@1.0.1
