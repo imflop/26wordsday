@@ -1,11 +1,11 @@
 // Сервисные функции
 
-function Sidebar (selector) {
+function CollapsibleElement() {
     /*
-    Сервис-функция для управления сайдбаром
+    Сервис-функция для управления сворачиваемыми меню
     */
-    const sidebar_btn_main_wrapper_selector = '.js-sidebar_btn_main_wrapper';
-    const sidebar = $(selector);
+    const self = this;
+    const collapsible_element_wrapper = '.js-collapsible-element-wrapper';
 
     this.init_collapsible_elements = function () {
         /*
@@ -15,36 +15,15 @@ function Sidebar (selector) {
         $('[data-is-open="false"]').addClass('closed');
     };
 
-    this.toggleSidebar = function () {
-        /*
-        Метод для раскрытия/свертывания сайдбара
-        */
-        toggle_sidebar_element(sidebar);
-    };
-
-    this.openSidebar = function () {
-        /*
-        Метод для раскрытия сайдбара
-        */
-        toggle_sidebar_element(sidebar, false);
-    };
-
-    this.closeSidebar = function () {
-        /*
-        Метод для свертывания сайдбара
-        */
-        toggle_sidebar_element(sidebar, true);
-    };
-
     this.toggleDropdown = function (dropdown_toggle_btn) {
         /*
-        Метод для раскрытия/свертывания элементов 'dropdown'
+        Метод для раскрытия/свертывания элементов 'collapsible'
         */
-        const dropdown = dropdown_toggle_btn.closest(sidebar_btn_main_wrapper_selector);
-        toggle_sidebar_element(dropdown);
+        const dropdown = dropdown_toggle_btn.closest(collapsible_element_wrapper);
+        self.toggle_collapsible_element(dropdown);
     };
 
-    function toggle_sidebar_element(element, state_to_close=null) {
+    this.toggle_collapsible_element = function(element, state_to_close=null) {
         /*
         Функция для назначения атрибутов сворачиваемым элементам
         */
@@ -57,6 +36,35 @@ function Sidebar (selector) {
             element.attr('data-is-open', true);
         }
     }
+}
+
+function Sidebar (selector) {
+    /*
+    Сервис-функция для управления сайдбаром
+    */
+    const sidebar = $(selector);
+    const service = new CollapsibleElement();
+
+    this.toggleSidebar = function () {
+        /*
+        Метод для раскрытия/свертывания сайдбара
+        */
+        service.toggle_collapsible_element(sidebar);
+    };
+
+    this.openSidebar = function () {
+        /*
+        Метод для раскрытия сайдбара
+        */
+        service.toggle_collapsible_element(sidebar, false);
+    };
+
+    this.closeSidebar = function () {
+        /*
+        Метод для свертывания сайдбара
+        */
+        service.toggle_collapsible_element(sidebar, true);
+    };
 }
 
 function Messages(container){

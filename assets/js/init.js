@@ -7,6 +7,7 @@ $(document).ready(function () {
     /*
     Инициализация сайдбара и сворачиваемых меню
      */
+    twentysixwordsday.initDropdown();
     twentysixwordsday.initSidebar();
 
     /*
