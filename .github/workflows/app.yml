@@ -26,8 +26,9 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pip install pytest
+        pip install pytest-django
         export DJANGO_SETTINGS_MODULE=twentysixwordsday.settings.local
+        export python_files=tests.py test_*.py *_tests.py
         pytest
     - name: GitHub Action for Slack
       uses: Ilshidur/action-slack@1.0.1
