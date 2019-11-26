@@ -5,6 +5,62 @@ html, body {
     font-size: 24px;
 }
 
-body {
-    background-color: #eeeeee;
+body{
+    height: 100%;
+    background-color: #fff;
+    color: #453d52;
+    font-family: 'Rubik', sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
+
+/* Forms */
+
+.form-sign-in {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.non-field-errors, .fields-errors {
+    color: red;
+    font-size: 14px;
+}
+
+/* End Forms */
+
+.app-base-icon {
+    padding-right: 10px;
+}
+
+.inner-btn-border {
+    display: None;
+    width: 4px;
+    border-right: 5px solid;
+    border-radius: 0 6px 6px 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.col-spacer-m-05-0 {
+    margin: 0.5rem 0;
+}
+
+/* region Bases ******************************************************************************************************/
+
+#app-base-container, #app-base-row {
+    height: 100%;
+}
+
+#app-base-col-content {
+    display: flex;
+    flex-direction: column;
+}
+
+#content-base-row {
+   height: 100%;
+}
+
+/* endregion *********************************************************************************************************/

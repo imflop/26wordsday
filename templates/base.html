@@ -2,11 +2,11 @@
 <html lang="en">
     <head>
         {% load staticfiles %}
+        {% load template_schema %}
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
-
-        {% load staticfiles %}
 
         {% block static_styles %}
             {% include 'blocks/_styles.html' %}
@@ -21,17 +21,27 @@
         Классы: {группа}-{dj app (если нет - не указывать)-{bs container/row/col (если нет - не указывать)}-{модификатор}}
          -->
 
+        {% init_template_schema 'utils.schemas.BaseApplicationSchema' as app_schema %}
+
         <div id="app-base-container" class="container-fluid">
             <div id="app-base-row" class="row">
                 {% block sidebar %}
-                    {% include 'blocks/page/_generic_sidebar.html' %}
+                    {% render_template_schema_group app_schema.application_sidebar 'sidebar' %}
                 {% endblock %}
-                <div id="app-base-content-col" class="col">
-                    {% block navbar %}
-                        {% include 'blocks/page/_navbar.html' %}
-                    {% endblock %}
-                    {% block content %}
-                    {% endblock %}
+                <div id="app-base-col-content" class="col">
+                    <div id="navbar-base-row" class="row">
+                        {% block navbar_content %}
+                        {% endblock %}
+                    </div>
+                    <div id="content-base-row" class="row">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                    <div id="footer-base-row" class="row">
+                        {% block footer_content %}
+                            {% include 'blocks/page/_footer.html' %}
+                        {% endblock %}
+                    </div>
                 </div>
             </div>
         </div>

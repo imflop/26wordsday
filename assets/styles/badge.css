@@ -1,0 +1,25 @@
+/* Badge CSS */
+
+/* region Info Badge */
+
+.info-badge-row .info-badge-col {
+    margin: auto 0 auto 0;
+    flex: 0 0 2.7rem;
+}
+
+.info-badge-row .info-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #27a9e3;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    color: white;
+}
+
+.info-badge-row .info-badge-description-row {
+    align-items: center;
+    white-space: pre-wrap;
+}
+
+/* endregion */

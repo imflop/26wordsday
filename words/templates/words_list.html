@@ -1,43 +1,59 @@
 {% extends "base.html" %}
 
+{% block navbar_content %}
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col-12 navbar-words-list-title">
+                СЛУЧАЙНАЯ ПОДБОРКА #223
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 navbar-words-list-col-updates-info">
+        <div class="row">
+            <div class="col-12 navbar-words-list-col-updates-title">
+                До следующего обновления
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 navbar-words-list-col-updates-schedule">
+                <i class="material-icons app-base-icon">access_alarm</i>
+                <span>13:14:20</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
-    <!-- При переопределении блока 'content' - задавать 'id' родительскому контейнеру чтобы не было путаницы в стилях -->
-    <div id="content-words-row" class="row">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-lg-8 content-col">
-                    <div class="row">
-                        <div class="col-12 content-title">ПОДБОРКА #223</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 content-col">
-                    ВРЕМЯ: 00:00:00
-                </div>
-                <div class="col-12 content-col">
-                    <div class="row">
-                        <div class="col-12 content-sub-title">ТЭГИ</div>
-                        <div class="col-12">
-                            <span class="badge badge-primary words-tag-badge">Здоровье</span>
-                            <span class="badge badge-primary words-tag-badge">Природа</span>
-                            <span class="badge badge-primary words-tag-badge">Спорт</span>
-                        </div>
-                    </div>
+    <div class="col-12">
+        <div class="row content-words-list-tags-row">
+            <div class="col-12 content-words-list-tags-col-title">
+                 ТЭГИ
+            </div>
+            <div class="col-12 content-words-list-tags-col-badges">
+                <span class="badge badge-primary words-tag-badge">
+                    Здоровье
+                </span>
+                <span class="badge badge-primary words-tag-badge">
+                    Природа
+                </span>
+                <span class="badge badge-primary words-tag-badge">
+                    Спорт
+                </span>
+            </div>
+        </div>
+        <div class="row content-words-list-row-words">
+            <div class="col col-spacer-m-05-0">
+                <div class="row justify-content-center">
+                    {% include '_word_card.html' %}
+                    {% include '_word_card.html' %}
+                    {% include '_word_card.html' %}
+                    {% include '_word_card.html' %}
+                    {% include '_word_card.html' %}
+                    {% include '_word_card.html' %}
                 </div>
             </div>
-            <div class="row content-words-row-word-cards">
-                <div class="col content-col">
-                    <div class="row justify-content-center">
-                        {% include 'blocks/page/_word_card.html' %}
-                        {% include 'blocks/page/_word_card.html' %}
-                        {% include 'blocks/page/_word_card.html' %}
-                        {% include 'blocks/page/_word_card.html' %}
-                        {% include 'blocks/page/_word_card.html' %}
-                        {% include 'blocks/page/_word_card.html' %}
-                    </div>
-                </div>
-                <div class="col content-col content-words-col-detail-sidebar">
-                    Описание
-                </div>
+            <div class="col content-words-list-col-detail-sidebar">
+                Описание
             </div>
         </div>
     </div>
