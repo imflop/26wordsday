@@ -10,7 +10,7 @@ decorator==4.4.0
 Django==2.2.4
 django-environ==0.4.5
 django-redis==4.10.0
-django-template-schema==0.1
+git+https://github.com/MEADez/django-template-schema.git@master#egg=django-template-schema==0.1
 idna==2.8
 importlib-metadata==0.23
 ipython==7.6.1
