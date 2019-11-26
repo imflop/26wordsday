@@ -53,6 +53,7 @@ THIRD_PARTY_APPS = ()
 LOCAL_APPS = (
     'users',
     'words',
+    'template_schema'
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -128,7 +129,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # Our stuff: custom template context processors go here
-                'utils.context_processors.twentysixwordsday_context_processor',
             ],
         },
     },
