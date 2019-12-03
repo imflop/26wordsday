@@ -3,7 +3,6 @@
 /* region Info Badge */
 
 .info-badge-row .info-badge-col {
-    margin: auto 0 auto 0;
     flex: 0 0 2.7rem;
 }
 
@@ -17,9 +16,19 @@
     color: white;
 }
 
-.info-badge-row .info-badge-description-row {
+.info-badge-row .info-badge-row-description {
     align-items: center;
     white-space: pre-wrap;
 }
+
+/* Media */
+
+@media screen and (max-width: 576px) {
+    .info-badge-row .info-badge-col {
+       display: none;
+    }
+}
+
+/* End Media */
 
 /* endregion */

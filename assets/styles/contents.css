@@ -76,11 +76,13 @@
 /* End Words Card */
 
 /* Media */
+
 @media screen and (max-width: 576px) {
     .words-card {
         max-width: unset;
     }
 }
+
 /* End Media */
 
 /********************************************************************************

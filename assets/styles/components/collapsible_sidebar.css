@@ -1,9 +1,8 @@
 /* Collapsible Sidebar CSS */
 
-/* region Sidebar ****************************************************************************************************/
+/* region Vertical / Horizontal Sidebar ******************************************************************************/
 
 #sidebar-base-col {
-    font-weight: 700;
     z-index: 100;
 }
 
@@ -33,8 +32,16 @@
     display: none;
 }
 
+#horizontal-sidebar-base-row {
+    height: 3.2rem;
+    color: white;
+    align-items: center;
+    background-color: #1f262d;
+}
+
 .sidebar-row {
     background-color: #1f262d;
+    font-weight: 700;
 }
 
 /* Header
@@ -51,16 +58,16 @@
     justify-content: center;
 }
 
-.sidebar-row.sidebar-row-header .sidebar-col-logo {
+.sidebar-row .sidebar-col-logo {
     padding: 0 0.86rem;
 }
 
-.sidebar-row.sidebar-row-header .sidebar-logo  {
+.sidebar-row .sidebar-logo  {
     display: flex;
     align-items: center;
 }
 
-.sidebar-row.sidebar-row-header .sidebar-logo span  {
+.sidebar-row .sidebar-logo span  {
     margin-left: 10px;
 }
 
@@ -75,7 +82,7 @@
 *********************************************************************************/
 
 .sidebar-row.sidebar-row-body {
-    height: calc(100% - 6.6rem);
+    height: calc(100% - 4.6rem);
 }
 
 .sidebar-row .sidebar-col-body {
@@ -90,7 +97,7 @@
 *********************************************************************************/
 
 .sidebar-row.sidebar-row-footer {
-    height: 1.4rem;
+    height: 2rem;
     align-items: center;
     border-top: 1px solid rgba(141, 141, 141, 0.07);
 }
@@ -111,13 +118,13 @@
 /* Buttons
 *********************************************************************************/
 
-.sidebar-grouper {
+.sidebar-row .sidebar-grouper {
     /*border-bottom: 1px solid rgba(141, 141, 141, 0.07);*/
     padding: 0.5rem 0;
     width: 100%;
 }
 
-.sidebar-grouper .grouper-title {
+.sidebar-row .sidebar-grouper .grouper-title {
     padding: 0.1rem 0.5rem;
     font-size: 0.5rem;
     font-weight: 300;
@@ -188,12 +195,12 @@
     color: white;
 }
 
-.sidebar-row .sidebar-btn-wrapper .sidebar-btn.active .inner-btn-border {
+.sidebar-row .sidebar-btn-wrapper .sidebar-btn.active .inner-btn-border-right {
     display: block;
     border-color: #27a9e3;
 }
 
-.sidebar-row .sidebar-btn-wrapper .sidebar-sub-btn.active .inner-btn-border {
+.sidebar-row .sidebar-btn-wrapper .sidebar-sub-btn.active .inner-btn-border-right {
     display: block;
     border-color: #DD5124;
 }
@@ -213,3 +220,7 @@
 }
 
 /* endregion *********************************************************************************************************/
+
+/* Media */
+
+/* End Media */
