@@ -29,19 +29,14 @@
                     {% render_template_schema_group app_schema.application_sidebar 'sidebar' %}
                 {% endblock %}
                 <div id="app-base-col-content" class="col">
-                    <div id="navbar-base-row" class="row">
-                        {% block navbar_content %}
-                        {% endblock %}
-                    </div>
-                    <div id="content-base-row" class="row">
-                        {% block content %}
-                        {% endblock %}
-                    </div>
-                    <div id="footer-base-row" class="row">
-                        {% block footer_content %}
-                            {% include 'blocks/page/_footer.html' %}
-                        {% endblock %}
-                    </div>
+                    {% block navbar %}
+                        {% render_template_schema_group app_schema.application_navbar 'navbar' %}
+                    {% endblock %}
+                    {% block content %}
+                    {% endblock %}
+                    {% block footer %}
+                        {% include 'blocks/page/_footer.html' %}
+                    {% endblock %}
                 </div>
             </div>
         </div>

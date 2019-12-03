@@ -1,0 +1,20 @@
+<{{ button.tag }} class="{{ button.css_classes }}" {{ button.html_params }}>
+    {% if button.icon_before_title %}
+        {{ button.icon_before_title }}
+    {% endif %}
+    {% if button.title %}
+        {{ button.title }}
+    {% endif %}
+    {% if button.icon_after_title %}
+        {{ button.icon_after_title }}
+    {% endif %}
+    {% if button.toggle_on_icon %}
+        {{ button.toggle_on_icon }}
+    {% endif %}
+    {% if button.toggle_off_icon %}
+        {{ button.toggle_off_icon }}
+    {% endif %}
+    {% if button.additional_element %}
+        {{ button.additional_element }}
+    {% endif %}
+</{{ button.tag }}>

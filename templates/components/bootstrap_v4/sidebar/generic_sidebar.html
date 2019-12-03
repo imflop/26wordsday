@@ -1,15 +1,14 @@
+{% load template_schema %}
+
 <div id="sidebar-base-col" class="col js-collapsible_sidebar" data-is-open="{{ sidebar.get_is_open }}">
     <div class="sidebar-pos-fixed">
         <div class="row sidebar-row sidebar-row-header">
             <div class="col-12 sidebar-col-logo">
                 <div class="sidebar-logo center-on-sidebar-close">
-                    <img src="/assets/img/logo_img.png" height="22" width="23">
-                    <span class="hide-on-sidebar-close">26 Words Day</span>
+                    {{ sidebar.logo_image }}
+                    {{ sidebar.logo_title }}
                 </div>
             </div>
-        </div>
-        <div class="row sidebar-row sidebar-row-profile-info">
-            {% include 'blocks/page/_profile_dropdown.html' %}
         </div>
         <div class="row sidebar-row sidebar-row-body">
             <div class="col-12 sidebar-col-body">
@@ -20,11 +19,11 @@
                         </div>
                         {% for button in grouper.elements %}
                             <div class="sidebar-btn-wrapper js-collapsible-element-wrapper" data-is-open="{{ button.get_is_open }}">
-                                {% include 'blocks/page/_sidebar_btn.html' with button=button only %}
+                                {% include 'components/generic_button.html' with button=button only %}
                                 {% if button.is_dropdown %}
                                     <div class="sidebar-sub-btn-wrapper">
                                         {% for sub_button in button.sub_buttons.values %}
-                                            {% include 'blocks/page/_sidebar_btn.html' with button=sub_button only %}
+                                            {% include 'components/generic_button.html' with button=sub_button only %}
                                         {% endfor %}
                                     </div>
                                 {% endif %}
@@ -38,11 +37,7 @@
             <div class="row sidebar-row sidebar-row-footer">
                 <div class="col-12">
                     <div class="sidebar-toolbar">
-                        <button type="button" class="sidebar-toolbar-btn js-sidebar_toggle_btn">
-                            <i class="material-icons app-base-icon hide-on-sidebar-open">keyboard_arrow_right</i>
-                            <i class="material-icons app-base-icon hide-on-sidebar-close">keyboard_arrow_left</i>
-                            <span class="hide-on-sidebar-close">Свернуть</span>
-                        </button>
+                        {% include 'components/generic_button.html' with button=sidebar.get_toggle_button only %}
                     </div>
                 </div>
             </div>
