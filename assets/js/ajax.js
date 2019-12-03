@@ -31,10 +31,10 @@ function ajaxGetRequest(url, container, dataType='JSON', main=null, data={}, ico
         }
 
         // Вызов callback - функций
-        if(main){
+        if(main) {
             main(response);
         }
-        if(callback){
+        if(callback) {
             callback();
         }
 
@@ -63,7 +63,7 @@ function ajaxPostRequest(url, container, data={}, dataType='JSON', main=null, ic
         // Можно использовать для манипуляций с сообщениями
 
         // Вызов callback - функций
-        if (main){
+        if (main) {
             main(response);
         }
 

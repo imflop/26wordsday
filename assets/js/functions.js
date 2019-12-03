@@ -4,20 +4,15 @@ const twentysixwordsday = {
     /*
     Контейнер для хранения основных функций приложения
     */
-    initDropdown: function() {
+    initDropdown: function () {
         /*
         Функция для инициализации сворачиваемых элементов
         */
 
-        const service = new CollapsibleElement();
-        service.init_collapsible_elements();
+        const collapsible_element_selector = '.js-collapsible-element-wrapper';
+        const trigger_selector = '.js-collapsible-element-trigger';
 
-        $(document).on('click', '.js-collapsible-element-trigger', function (e) {
-            /*
-            Сигнал на раскрытие/свертывание элемента 'collapsible' сайдбара
-            */
-            service.toggleDropdown($(this));
-        });
+        initSimpleCollapsibleElement(collapsible_element_selector, trigger_selector)
 
     },
 
@@ -25,30 +20,12 @@ const twentysixwordsday = {
         /*
         Функция для инициализации сайдбара
         */
+
         const sidebar_selector = '.js-collapsible_sidebar';
-        let sidebar = new Sidebar(sidebar_selector);
+        const sidebar_trigger_selector = '.js-sidebar_toggle_btn';
+        const collapse_on = 700;
 
-        $(sidebar_selector).on('click', '.js-sidebar_toggle_btn', function (e) {
-            /*
-            Сигнал на раскрытие/свертывание сайдбара
-            */
-            if ($(window).width() > 700){
-                sidebar.toggleSidebar();
-            }
-        });
+        initSimpleSidebar(sidebar_selector, sidebar_trigger_selector, collapse_on)
 
-        $(window).on('load resize', function() {
-            /*
-            Сигнал для раскрытия/свертывания сайдбара при изменении размера видимой области экрана
-            */
-            if ($(window).width() < 700){
-                sidebar.closeSidebar();
-            }
-        });
-
-        // При загрузке страницы также нужно проверять размер видимой области экрана
-        if ($(window).width() < 700){
-            sidebar.closeSidebar();
-        }
     }
 };
