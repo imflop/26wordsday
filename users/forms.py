@@ -118,3 +118,6 @@ class UserRegistrationForm(StyledForm, forms.ModelForm):
         password_validation.validate_password(password)
 
         return self.cleaned_data
+
+    class Media:
+        css = ''

@@ -3,6 +3,7 @@
     <head>
         {% load staticfiles %}
         {% load template_schema %}
+        {% init_template_schema 'utils.schemas.BaseApplicationSchema' as app_schema %}
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,6 +11,7 @@
 
         {% block static_styles %}
             {% include 'blocks/_styles.html' %}
+            {{ app_schema.media_css }}
         {% endblock %}
 
         <title>26 words day</title>
@@ -21,16 +23,14 @@
         Классы: {группа}-{dj app (если нет - не указывать)-{bs container/row/col (если нет - не указывать)}-{модификатор}}
          -->
 
-        {% init_template_schema 'utils.schemas.BaseApplicationSchema' as app_schema %}
-
         <div id="app-base-container" class="container-fluid">
             <div id="app-base-row" class="row">
                 {% block sidebar %}
-                    {% render_template_schema_group app_schema.application_sidebar 'sidebar' %}
+                    {% render_template_schema_group app_schema.application_sidebar %}
                 {% endblock %}
                 <div id="app-base-col-content" class="col">
                     {% block navbar %}
-                        {% render_template_schema_group app_schema.application_navbar 'navbar' %}
+                        {% render_template_schema_group app_schema.application_navbar %}
                     {% endblock %}
                     {% block content %}
                     {% endblock %}
@@ -43,6 +43,7 @@
 
         {% block static_js %}
             {% include 'blocks/_scripts.html' %}
+            {{ app_schema.media_js }}
         {% endblock %}
 
         {% block js %}

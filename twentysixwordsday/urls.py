@@ -23,7 +23,7 @@ from users.views import UserLoginView, UserRegistrationView, AccountActivationDo
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('words/', include('words.urls')),
-    path('', include('users.urls')),
+    path('users/', include('users.urls')),
 
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
