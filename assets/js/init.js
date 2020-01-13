@@ -9,6 +9,7 @@ $(document).ready(function () {
      */
     twentysixwordsday.initDropdown();
     twentysixwordsday.initSidebar();
+    twentysixwordsday.initTray();
 
     /*
     Waves Effects

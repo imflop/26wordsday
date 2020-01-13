@@ -12,8 +12,9 @@ const twentysixwordsday = {
         const collapsible_element_selector = '.js-collapsible-element-wrapper';
         const trigger_selector = '.js-collapsible-element-trigger';
 
-        initSimpleCollapsibleElement(collapsible_element_selector, trigger_selector)
-
+        if ($(collapsible_element_selector).length && $(trigger_selector).length) {
+            initSimpleCollapsibleElement(collapsible_element_selector, trigger_selector);
+        }
     },
 
     initSidebar: function () {
@@ -25,7 +26,30 @@ const twentysixwordsday = {
         const sidebar_trigger_selector = '.js-sidebar_toggle_btn';
         const collapse_on = 700;
 
-        initSimpleSidebar(sidebar_selector, sidebar_trigger_selector, collapse_on)
+        if ($(sidebar_selector).length && $(sidebar_trigger_selector).length) {
+            initSimpleSidebar(sidebar_selector, sidebar_trigger_selector, collapse_on)
+        }
+    },
 
+    initTray: function () {
+        /*
+        Функция для инициализации tray
+        */
+
+        const tray = new Tray('#landing-tray', 12);
+        tray.updateHeaderTitle('Last Events');
+        tray.addOrUpdateMessageItem('1', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('3', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('5', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('y', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('u', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('g', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('d', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('a', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('a', 'eeeerrr44rr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('3g', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('4d', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('5a', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
+        tray.addOrUpdateMessageItem('6a', 'eeeerrr44rr', '334455', 'ggyyy66', 'tttt');
     }
 };
