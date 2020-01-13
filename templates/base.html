@@ -11,6 +11,7 @@
 
         {% block static_styles %}
             {% include 'blocks/_styles.html' %}
+            {% include 'blocks/_custom_styles.html' %}
             {{ app_schema.media_css }}
         {% endblock %}
 
@@ -23,26 +24,31 @@
         Классы: {группа}-{dj app (если нет - не указывать)-{bs container/row/col (если нет - не указывать)}-{модификатор}}
          -->
 
-        <div id="app-base-container" class="container-fluid">
-            <div id="app-base-row" class="row">
-                {% block sidebar %}
-                    {% render_template_schema_group app_schema.application_sidebar %}
-                {% endblock %}
-                <div id="app-base-col-content" class="col">
-                    {% block navbar %}
-                        {% render_template_schema_group app_schema.application_navbar %}
+        {% block base_body %}
+
+            <div id="app-base-container" class="container-fluid">
+                <div id="app-base-row" class="row">
+                    {% block sidebar %}
+                        {% render_template_schema_group app_schema.application_sidebar %}
                     {% endblock %}
-                    {% block content %}
-                    {% endblock %}
-                    {% block footer %}
-                        {% include 'blocks/page/_footer.html' %}
-                    {% endblock %}
+                    <div id="app-base-col-content" class="col">
+                        {% block navbar %}
+                            {% render_template_schema_group app_schema.application_navbar %}
+                        {% endblock %}
+                        {% block content %}
+                        {% endblock %}
+                        {% block footer %}
+                            {% include 'blocks/page/_footer.html' %}
+                        {% endblock %}
+                    </div>
                 </div>
             </div>
-        </div>
+
+        {% endblock %}
 
         {% block static_js %}
             {% include 'blocks/_scripts.html' %}
+            {% include 'blocks/_custom_scripts.html' %}
             {{ app_schema.media_js }}
         {% endblock %}
 

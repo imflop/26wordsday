@@ -1,0 +1,58 @@
+/* region Landing */
+
+.landing-content-row {
+
+}
+
+.landing-right-col {
+    background-color: #D9542E;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);
+    color: white;
+}
+
+.landing-content-row.landing-left-side-main-row {
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 2.7rem);
+}
+
+.landing-content-row.landing-right-side-main-row {
+
+}
+
+.landing-flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-logo-row {
+    padding: 0.60rem 0.84rem;
+    font-weight: 700;
+}
+
+.landing-logo-row span {
+    margin-left: 0.42rem;
+}
+
+.landing-center-content {
+    width: 500px;
+    margin: 0 1rem;
+}
+
+.landing-center-content .landing-title-level-one {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.landing-center-content .landing-title-level-two {
+    font-size: 0.6rem;
+    margin-bottom: 2rem;
+}
+
+.landing-content-row.landing-toolbar {
+    padding: 0.4rem;
+    justify-content: flex-end;
+}
+
+/* endregion*/

@@ -63,6 +63,44 @@ body{
    height: 100%;
 }
 
+.btn {
+    cursor: pointer;
+}
+
+.custom-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: unset;
+    padding: unset;
+    margin: unset;
+}
+
+.custom-link:hover {
+    text-decoration: none;
+    color: unset;
+}
+
+.btn-outline-orange {
+    color: #D9542E;
+    border-color: #D9542E;
+}
+
+.btn-outline-orange:hover {
+    color: white;
+    background-color: #D9542E;
+}
+
+.btn-outline-orange-inverse {
+    color: white;
+    border-color: white;
+}
+
+.btn-outline-orange-inverse:hover {
+    color: #D9542E;
+    background-color: white;
+}
+
 /* endregion *********************************************************************************************************/
 
 
