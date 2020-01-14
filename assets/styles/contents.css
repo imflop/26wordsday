@@ -12,6 +12,7 @@
 /* Tags */
 
 .content-words-list-tags-row {
+    border-top: 1px solid #d5cfdb;
     border-bottom: 1px solid rgb(226, 219, 232);
 }
 
@@ -34,6 +35,8 @@
 
 .content-words-list-row-words {
     height: calc(100% - 4.5rem);
+    border-bottom: 1px solid rgb(226, 219, 232);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .03);
 }
 
 /* End Words List */
@@ -76,11 +79,13 @@
 /* End Words Card */
 
 /* Media */
+
 @media screen and (max-width: 576px) {
     .words-card {
         max-width: unset;
     }
 }
+
 /* End Media */
 
 /********************************************************************************

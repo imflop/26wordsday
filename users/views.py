@@ -4,12 +4,12 @@ from django.contrib.auth.views import LoginView, PasswordResetView, PasswordRese
 from django.shortcuts import render
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, DetailView
 from django.views.generic.edit import BaseFormView
 
 from users.forms import UserAuthenticationForm, UserPasswordResetForm, UserRegistrationForm, \
     UserPasswordResetConfirmForm, UserAccountActivationRepeat
-from users.models import User
+from users.models import User, UserProfile
 from users.tasks import send_activation_email, send_password_reset_email
 
 
@@ -103,3 +103,12 @@ class SendActivationEmail(FormView):
         send_activation_email.delay(email=email)
 
         return super().form_valid(form)
+
+
+class ProfileDetails(DetailView):
+    """
+    Profile details subpage
+    """
+
+    model = UserProfile
+    template_name = 'profile/details.html'

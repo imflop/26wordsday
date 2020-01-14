@@ -1,48 +1,8 @@
-from template_schema.components import SingleButton, DropdownButton
-from template_schema.handler import TemplateSchema, TemplateSchemaGroup, TemplateSchemaMethods
+from typing import Type
 
-
-class Menu(TemplateSchemaGroup):
-    """
-    Класс для реализации бокового сворачивающегося меню
-    """
-
-    collapsible: bool = True
-    is_open: bool = True
-
-    @property
-    def get_is_open(self) -> str:
-        """
-        Property для проверки состояния сайдбара - открыт/закрыт
-        :return: str
-        """
-        return TemplateSchemaMethods.boolean_to_str_js_compatible(self.is_open)
-
-    def initialize(self) -> None:
-        """
-        Метод для запуска инициализации меню. Установка кнопкам активного статуса при совпадении url, открытие
-        выпадающего меню при наличии активной кнопки в нем
-        :return: None
-        """
-
-        for button_key, button in self.elements.items():
-            button.activate_by_url(self.schema.current_url)
-            if isinstance(button, DropdownButton):
-                for sub_button in button.sub_buttons.values():
-                    url_check_result = sub_button.activate_by_url(self.schema.current_url)
-                    if url_check_result:
-                        parent_button = self.elements[button_key]
-                        parent_button.open_dropdown()
-
-    @classmethod
-    def build(cls, **kwargs) -> TemplateSchemaGroup:
-        """
-        Метод для сборки сайдбара
-        :return: None
-        """
-        instance = super().build(**kwargs)
-        instance.initialize()
-        return instance
+from template_schema.components.basics import MaterialIcon, SingleButton, Badge
+from template_schema.handler import TemplateSchema
+from template_schema_extensions.components.navigation.components import Sidebar, Navbar, ProfileDropdown
 
 
 class BaseApplicationSchema(TemplateSchema):
@@ -50,62 +10,139 @@ class BaseApplicationSchema(TemplateSchema):
     Базовая схема приложения
     """
 
-    class Sidebar(Menu):
+    class GenericNavbar(Navbar):
+        """
+        Класс для реализации навбара приложения
+        """
+
+        unique_name = 'application_navbar'
+        grouper_map = {'first_group': ['navbar_button_1'], 'second_group': ['navbar_button_2', 'navbar_button_3']}
+
+        def get_elements(self) -> dict:
+            return {
+                'toggle_button': self.Components.NavbarSingleButton(
+                    key='toggle_button',
+                    css_classes=['navbar-toggler'],
+                    icon_before_title=MaterialIcon('view_list'),
+                    html_params={'data-toggle': 'collapse', 'data-target': '#navbar-collapsed-content'}
+                ),
+                'navbar_button_1': self.Components.NavbarSingleButton(
+                    key='navbar_button_1',
+                    icon_before_title=MaterialIcon('landscape')
+                ),
+                'navbar_button_2': self.Components.NavbarSingleButton(
+                    key='navbar_button_2',
+                    icon_before_title=MaterialIcon('landscape')
+                ),
+                'navbar_button_3': self.Components.NavbarSingleButton(
+                    key='navbar_button_3',
+                    icon_before_title=MaterialIcon('landscape')
+                )
+            }
+
+        def get_toggle_button(self) -> Type[SingleButton]():
+            return self.elements.get('toggle_button')
+
+    class LandingNavbar(Navbar):
+        """
+        Класс для реализации навбара landing-страницы
+        """
+
+        unique_name = 'landing_navbar'
+        logo_image = Navbar.Components.LogoImage(html_params={'src': '/assets/img/logo_img.png'})
+        logo_title = Navbar.Components.LogoTitle('26 Words Day')
+
+        def extend_context_data(self) -> dict:
+            pass
+
+    class GenericSidebar(Sidebar):
         """
         Класс для реализации сайдбара приложения
         """
 
-        template_name = 'blocks/page/_generic_sidebar.html'
         unique_name = 'application_sidebar'
         grouper_map = {'Слова': ['random_word_set', 'exams'], 'Другое': ['words_sets_history', 'rating']}
-
-        class SidebarSingleButton(SingleButton):
-            """
-            Класс для реализации одиночной кнопки сайдбара
-            """
-
-            highlight_class = 'active'
-            common_css_classes = ['sidebar-btn', 'waves-btn']
-
-        class SidebarDropdownButton(DropdownButton):
-            """
-            Класс для реализации кнопки с сворачивающимя меню для сайдбара
-            """
-
-            highlight_class = 'active'
-            common_css_classes = ['sidebar-btn', 'waves-btn', 'js-collapsible-element-trigger']
+        logo_image = Sidebar.Components.LogoImage(html_params={'src': '/assets/img/logo_img.png'})
+        logo_title = Sidebar.Components.LogoTitle('26 Words Day')
 
         def get_elements(self) -> dict:
-
             return {
-                'random_word_set': self.SidebarSingleButton(
+                'random_word_set': self.Components.SidebarSingleButton(
                     key='random_word_set_button',
-                    icon_before_title='landscape',
-                    title='Случайная подборка',
-                    html_params={'href': '#'},
-                    active_url='/'
-                ),
-                'exams': self.SidebarSingleButton(
-                    key='exams_button',
-                    icon_before_title='school',
-                    title='Экзамены',
-                    html_params={'href': '#'},
-                    active_url='#',
-                    css_classes=['disabled-btn']
-                ),
-                'words_sets_history': self.SidebarSingleButton(
-                    key='words_sets_history_button',
-                    icon_before_title='history',
-                    title='История',
-                    html_params={'href': '#'},
-                    active_url='#',
-                    css_classes=['disabled-btn']
-                ),
-                'rating': self.SidebarSingleButton(
-                    key='rating_button',
-                    icon_before_title='call_made',
-                    title='Рейтинг',
+                    icon_before_title=MaterialIcon('landscape'),
+                    title=self.Components.SidebarButtonTitle('Случайная подборка'),
                     html_params={'href': '#'},
                     active_url='#'
+                ),
+                'exams': self.Components.SidebarSingleButton(
+                    key='exams_button',
+                    icon_before_title=MaterialIcon('school'),
+                    title=self.Components.SidebarButtonTitle('Экзамены'),
+                    html_params={'href': '#'},
+                    active_url='#',
+                    css_classes=['disabled-btn']
+                ),
+                'words_sets_history': self.Components.SidebarSingleButton(
+                    key='words_sets_history_button',
+                    icon_before_title=MaterialIcon('history'),
+                    title=self.Components.SidebarButtonTitle('История'),
+                    html_params={'href': '#'},
+                    active_url='#',
+                    css_classes=['disabled-btn']
+                ),
+                'rating': self.Components.SidebarSingleButton(
+                    key='rating_button',
+                    icon_before_title=MaterialIcon('call_made'),
+                    title=self.Components.SidebarButtonTitle('Рейтинг'),
+                    html_params={'href': '#'},
+                    active_url='#'
+                ),
+                'toggle_button': SingleButton(
+                    key='toggle_button',
+                    title=self.Components.SidebarButtonTitle('Свернуть'),
+                    icon_after_title=MaterialIcon('keyboard_arrow_left', css_classes=['hide-on-sidebar-close']),
+                    icon_before_title=MaterialIcon('keyboard_arrow_right', css_classes=['hide-on-sidebar-open']),
+                    css_classes=['sidebar-toolbar-btn', 'js-sidebar_toggle_btn']
+                )
+            }
+
+    class ProfileDropdownWithBadge(ProfileDropdown):
+        """
+        Класс для реализации выпадающего меню профиля
+        """
+
+        unique_name = 'profile_dropdown'
+        align = 'right'
+        grouper_map = {'user_badge': ['user_settings', 'exit']}
+
+        def set_face_badge(self) -> None:
+            self.face_badge = Badge(letter='E', rows=[
+                self.Components.Row('EVGENY',
+                                    css_classes=['info-badge-row-align', 'hide-on-sidebar-close'],
+                                    icon=MaterialIcon('keyboard_arrow_down')),
+                self.Components.Row('m3adez@gmail.com', css_classes=['info-badge-row-align', 'hide-on-sidebar-close'])
+            ])
+
+        def get_inner_badges(self) -> dict:
+            return {
+                'user_badge': Badge(letter='E', rows=[
+                    self.Components.Row('INFO'),
+                    self.Components.Row('INFO'),
+                    self.Components.Row('INFO'),
+                    self.Components.Row('INFO'),
+                    self.Components.Row('INFO'),
+                    self.Components.Row('INFO')
+                ])
+            }
+
+        def get_elements(self) -> dict:
+            return {
+                'user_settings': self.Components.MenuButton(
+                    key='user_settings_button',
+                    title='Настройки пользователя'
+                ),
+                'exit': self.Components.MenuButton(
+                    key='exit_button',
+                    title='Выход'
                 )
             }

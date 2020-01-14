@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% load static %}
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
+
+        {% include 'blocks/_styles.html' %}
+        {% include 'blocks/_custom_styles.html' %}
+
+        <title>26 words day</title>
+    </head>
+    <body>
+        <div id="app-base-container" class="container-fluid">
+            <div id="app-base-row" class="row">
+                <div id="app-base-col-content" class="col">
+                    <div id="content-base-row" class="row">
+                        <div class="col-lg-8 landing-flex-col">
+                            <div class="row landing-logo-row">
+                                <a class="custom-link" href="{% url 'landing' %}">
+                                    <img src="/assets/img/logo_img.png">
+                                    <span>26 Words Day</span>
+                                </a>
+                            </div>
+                            <div class="row landing-content-row landing-left-side-main-row">
+                                <div class="landing-center-content">
+                                    <div class="landing-title-level-one">
+                                        Improve your language skills with us!
+                                    </div>
+                                    <div class="landing-title-level-two">
+                                        The «26 Words Day» project allows people to increase their knowledge of the
+                                        English language and learn a lot about the etymology and semantics of English words.
+                                    </div>
+                                    <div class="btn btn-lg btn-outline-orange">Join</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 landing-flex-col landing-right-col">
+                            <div class="row landing-content-row landing-toolbar">
+                                <button class="btn btn-sm btn-outline-orange-inverse">Sign in</button>
+                            </div>
+                            <div class="row landing-content-row landing-toolbar">
+                                {% include 'blocks/page/_tray.html' with tray_id='landing-tray' only %}
+                            </div>
+                        </div>
+                    </div>
+                    {% include 'blocks/page/_footer.html' %}
+                </div>
+            </div>
+        </div>
+
+        {% include 'blocks/_scripts.html' %}
+        {% include 'blocks/_custom_scripts.html' %}
+
+    </body>
+</html>
