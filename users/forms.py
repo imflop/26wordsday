@@ -1,10 +1,43 @@
 from django import forms
 from django.contrib.auth import password_validation
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm
+from django.contrib.auth.forms import AuthenticationForm, SetPasswordForm
 from django.utils.translation import ugettext_lazy as _
+from flex_forms.components import FlexButton, BaseButton
+from flex_forms.forms import FlexForm
 
 from users.models import User
+from utils.components import BaseLink, DescriptionLink
 from utils.forms import StyledForm
+
+
+class SignInFlexForm(FlexForm, AuthenticationForm):
+    """
+    Форма для входа пользователя в систему.
+    """
+
+    css_classes = ['flex-form', 'sign-in-form']
+    grid = {
+        '_1': ['username'],
+        '_2': ['password'],
+        '_3': ['remember_me', 'lost_password'],
+        '_4': ['submit'],
+        '_5': ['sign_up']
+    }
+    remember_me = forms.BooleanField(label=_('Remember me'), required=False, widget=forms.CheckboxInput(attrs={
+        'field_group_class': 'checkbox-as-row'
+    }))
+    submit = FlexButton(BaseButton(_('Sign In'), css_classes=['btn-normal-blue'], html_params={'type': 'submit'}))
+    lost_password = FlexButton(BaseLink(_('Lost password'), html_params={'href': '/'}))
+    sign_up = FlexButton(DescriptionLink(_("Don't have an account?"), _('Sign Up'), html_params={'href': '/'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['placeholder'] = 'Username or Email'
+        self.fields['username'].widget.attrs['autocomplete'] = 'off'
+        self.fields['password'].widget.attrs['placeholder'] = 'Password'
+
+
+# TODO: переработать формы ниже.
 
 
 class UserAuthenticationForm(StyledForm, AuthenticationForm):

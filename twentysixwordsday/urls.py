@@ -17,16 +17,15 @@ from django.contrib import admin
 from django.contrib.auth.views import LogoutView, PasswordResetDoneView, PasswordResetCompleteView
 from django.urls import path, include
 
-from twentysixwordsday.views import LandingView
 from users.views import UserLoginView, UserRegistrationView, AccountActivationDoneView, AccountActivationConfirmView, \
-    UserPasswordResetView, UserPasswordResetConfirmView, SendActivationEmail
+    UserPasswordResetView, UserPasswordResetConfirmView, SendActivationEmail, SignInLandingFormView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('words/', include('words.urls')),
     path('users/', include('users.urls')),
 
-    path('', LandingView.as_view(), name='landing'),
+    path('', SignInLandingFormView.as_view(), name='landing'),
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('create-account/', UserRegistrationView.as_view(), name='create_account'),

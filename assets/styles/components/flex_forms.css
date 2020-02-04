@@ -1,0 +1,61 @@
+/* Floating Windows Windows CSS Override */
+
+
+/* region sign-in form  */
+
+.flex-form.sign-in-form {
+    width: 420px;
+    font-weight: normal;
+}
+
+.flex-form.sign-in-form .flex-field-main-label:not([for="id_remember_me"]) {
+    display: none !important;
+}
+
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(3) .static-flex-button {
+    text-align: right;
+}
+
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(4) .static-flex-button,
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(5) .static-flex-button {
+    justify-content: center;
+    display: flex;
+}
+
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(3) .flex-fields-row {
+    align-items: center;
+}
+
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(3) .flex-field-group label {
+    line-height: 25px;
+}
+
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(5) {
+    margin-top: 15px;
+}
+
+.flex-form.sign-in-form .flex-fields-row .flex-field-group label {
+    font-size: 14px !important;
+    margin-bottom: 0;
+}
+
+.flex-form.sign-in-form .flex-fields-column {
+    padding: 5px;
+}
+
+/* endregion */
+
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-row {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.flex-form a {
+    color: #2196F3 !important;
+}
+
+.flex-form .checkbox-container .checkbox-checkmark:after {
+    left: 10px;
+    top: 6px;
+}

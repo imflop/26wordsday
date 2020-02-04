@@ -51,5 +51,41 @@ const twentysixwordsday = {
         tray.addOrUpdateMessageItem('4d', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
         tray.addOrUpdateMessageItem('5a', 'eeeerrrrr', '334455', 'ggyyy66', 'tttt');
         tray.addOrUpdateMessageItem('6a', 'eeeerrr44rr', '334455', 'ggyyy66', 'tttt');
+    },
+
+    initFloatingAjax: function () {
+        // инициализация динамических сообщений.
+        const messenger = new Messages();
+        const preloader = new messenger.fullScreen();
+        // инициализация загрузчика контента по ajax.
+        const ajax_loader = new FloatingAjaxLoader();
+        ajax_loader.preloader = preloader;
+        ajax_loader.initSignals();
+
+        ajax_loader.preparePOSTDataCallback = function (form_obj, data, post_type, data_options) {
+
+            return data;
+        };
+
+        ajax_loader.preparePostCallback = function (form_obj, data, post_type, data_options) {
+
+            return function(response) {
+
+            }
+        };
+    },
+
+    initFloatingWindows: function () {
+        const fw_windows = {
+            'SIGN_IN_MODAL': 'sign-in-modal'
+        };
+        // инициализация загрузчика всплывающих окон.
+        const fw = new FloatingWindows();
+        // здесь нужно перечислить id всплывающих окон, через запятую, к которым привязаны кнопки их вызова.
+        fw.initWindows(fw_windows.SIGN_IN_MODAL);
+
+        $(document).on('floating-window:opened', function (event, window_id, options) {
+            // отслеживание сигналов об открытии всплывающих окон для подгрузки в них контента.
+        });
     }
 };

@@ -36,20 +36,32 @@
                                     <div class="btn btn-lg btn-outline-orange">Join</div>
                                 </div>
                             </div>
+                            {% include 'blocks/page/_footer.html' %}
                         </div>
                         <div class="col-lg-4 landing-flex-col landing-right-col">
                             <div class="row landing-content-row landing-toolbar">
-                                <button class="btn btn-sm btn-outline-orange-inverse">Sign in</button>
+                                <button type="button"
+                                        class="btn btn-sm btn-outline-orange-inverse js-floating_window_open"
+                                        data-floating-window="sign-in-modal"
+                                        data-floating-window-title="Sign In"
+                                        data-floating-window-position="10%,35%"
+                                        data-floating-window-show-footer="false"
+                                        data-floating-window-set-background="body"
+                                        data-ajax-reload-content="false"
+                                        data-ajax-url=""
+                                        data-ajax-form="#sign-in-modal-form">
+                                    Sign in
+                                </button>
                             </div>
                             <div class="row landing-content-row landing-toolbar">
                                 {% include 'blocks/page/_tray.html' with tray_id='landing-tray' only %}
                             </div>
                         </div>
                     </div>
-                    {% include 'blocks/page/_footer.html' %}
                 </div>
             </div>
         </div>
+        {% include 'blocks/floating_windows/sign_in_modal.html' with fw_id='sign-in-modal' form=form only %}
 
         {% include 'blocks/_scripts.html' %}
         {% include 'blocks/_custom_scripts.html' %}

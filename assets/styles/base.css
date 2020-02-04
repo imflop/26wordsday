@@ -13,22 +13,6 @@ body{
     -webkit-font-smoothing: antialiased;
 }
 
-/* Forms */
-
-.form-sign-in {
-    width: 100%;
-    max-width: 420px;
-    padding: 15px;
-    margin: 0 auto;
-}
-
-.non-field-errors, .fields-errors {
-    color: red;
-    font-size: 14px;
-}
-
-/* End Forms */
-
 .app-base-icon {
     padding-right: 10px;
 }
@@ -99,6 +83,24 @@ body{
 .btn-outline-orange-inverse:hover {
     color: #D9542E;
     background-color: white;
+}
+
+.btn-normal-blue {
+    width: 185px;
+    height: 52px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 10px;
+    background: #2196F3;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-normal-blue:hover {
+    background: #218ae5 !important;
 }
 
 /* endregion *********************************************************************************************************/

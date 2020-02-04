@@ -1,0 +1,34 @@
+/* Floating Windows Windows CSS Override */
+
+
+
+/* region sign-in form  */
+
+#sign-in-modal .floating-window-body-content {
+    padding-top: 0 !important;
+}
+
+#sign-in-modal .floating-window-header-content .left-side {
+    font-size: 24px;
+    font-weight: normal;
+    width: 100%;
+    justify-content: center;
+}
+
+#sign-in-modal .floating-window-header {
+    border-bottom: none !important;
+}
+
+/* endregion */
+
+
+.fw-1 .floating-window-row .floating-window-header-content .left-side,
+.fw-1 .floating-window-row .floating-window-header-content .right-side{
+    display: flex;
+    align-items: center;
+}
+
+.floating-background {
+    background-color: #000;
+    opacity: 0.5;
+}

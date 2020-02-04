@@ -8,9 +8,31 @@ from django.views.generic import TemplateView, FormView, DetailView
 from django.views.generic.edit import BaseFormView
 
 from users.forms import UserAuthenticationForm, UserPasswordResetForm, UserRegistrationForm, \
-    UserPasswordResetConfirmForm, UserAccountActivationRepeat
+    UserPasswordResetConfirmForm, UserAccountActivationRepeat, SignInFlexForm
 from users.models import User, UserProfile
 from users.tasks import send_activation_email, send_password_reset_email
+
+
+class SignInFormView(LoginView):
+    """
+    Представление для поддержки входа пользователя в систему.
+    """
+
+    form_class = SignInFlexForm
+    redirect_authenticated_user = True
+
+    def form_valid(self, form):
+        if 'remember_me' not in form.cleaned_data:
+            self.request.session.set_expiry(settings.SET_EXPIRY)
+        return super().form_valid(form)
+
+
+class SignInLandingFormView(SignInFormView):
+    """
+    Представление для поддержки быстрого входа пользователя в систему со стороны landing page (модальное окно).
+    """
+
+    template_name = 'landing.html'
 
 
 class UserLoginView(LoginView):

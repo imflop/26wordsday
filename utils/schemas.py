@@ -43,25 +43,13 @@ class BaseApplicationSchema(TemplateSchema):
         def get_toggle_button(self) -> Type[SingleButton]():
             return self.elements.get('toggle_button')
 
-    class LandingNavbar(Navbar):
-        """
-        Класс для реализации навбара landing-страницы
-        """
-
-        unique_name = 'landing_navbar'
-        logo_image = Navbar.Components.LogoImage(html_params={'src': '/assets/img/logo_img.png'})
-        logo_title = Navbar.Components.LogoTitle('26 Words Day')
-
-        def extend_context_data(self) -> dict:
-            pass
-
     class GenericSidebar(Sidebar):
         """
         Класс для реализации сайдбара приложения
         """
 
         unique_name = 'application_sidebar'
-        grouper_map = {'Слова': ['random_word_set', 'exams'], 'Другое': ['words_sets_history', 'rating']}
+        grouper_map = {'Слова': ['random_word_set', 'exams'], 'Другое': ['words_sets_history', 'rating_dropdown']}
         logo_image = Sidebar.Components.LogoImage(html_params={'src': '/assets/img/logo_img.png'})
         logo_title = Sidebar.Components.LogoTitle('26 Words Day')
 
@@ -72,7 +60,7 @@ class BaseApplicationSchema(TemplateSchema):
                     icon_before_title=MaterialIcon('landscape'),
                     title=self.Components.SidebarButtonTitle('Случайная подборка'),
                     html_params={'href': '#'},
-                    active_url='#'
+                    active_url='/words/list/'
                 ),
                 'exams': self.Components.SidebarSingleButton(
                     key='exams_button',
@@ -90,12 +78,28 @@ class BaseApplicationSchema(TemplateSchema):
                     active_url='#',
                     css_classes=['disabled-btn']
                 ),
-                'rating': self.Components.SidebarSingleButton(
-                    key='rating_button',
+                'rating_dropdown': self.Components.SidebarDropdownButton(
+                    key='rating_dropdown_button',
                     icon_before_title=MaterialIcon('call_made'),
-                    title=self.Components.SidebarButtonTitle('Рейтинг'),
-                    html_params={'href': '#'},
-                    active_url='#'
+                    title=self.Components.SidebarButtonTitle('Рейтинги'),
+                    sub_buttons={
+                        'personal_rating': self.Components.SidebarSingleButton(
+                            key='personal_rating_button',
+                            icon_before_title=MaterialIcon('face'),
+                            title=self.Components.SidebarButtonTitle('Персональный рейтинг'),
+                            css_classes=['sidebar-sub-btn'],
+                            html_params={'href': '#'},
+                            active_url='#'
+                        ),
+                        'world_wide_rating': self.Components.SidebarSingleButton(
+                            key='world_wide_rating_button',
+                            icon_before_title=MaterialIcon('language'),
+                            title=self.Components.SidebarButtonTitle('Мировой рейтинг'),
+                            css_classes=['sidebar-sub-btn'],
+                            html_params={'href': '#'},
+                            active_url='#'
+                        )
+                    }
                 ),
                 'toggle_button': SingleButton(
                     key='toggle_button',
