@@ -30,10 +30,13 @@ traitlets==4.3.2
 urllib3==1.25.3
 vine==1.3.0
 wcwidth==0.1.7
+git+https://github.com/MEADez/django-template-schema.git@master#egg=django-template-schema==0.2
+git+https://github.com/MEADez/dts-extensions.git@master#egg=dts-extensions==0.2
 Pillow==6.2.1
 
 # components
 git+https://github.com/MEADez/btc-flex-forms.git@master#egg=btc-flex-forms==0.5
 git+https://github.com/MEADez/btc-floating-windows.git@master#egg=btc-floating-windows==0.3
-git+https://github.com/MEADez/django-template-schema.git@master#egg=django-template-schema==0.3
-git+https://github.com/MEADez/dts-extensions.git@master#egg=dts-extensions==0.3
+git+https://github.com/MEADez/django-template-schema.git@master#egg=django-template-schema==0.4
+git+https://github.com/MEADez/dts-extensions.git@master#egg=dts-extensions==0.4
+
