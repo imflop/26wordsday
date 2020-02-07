@@ -7,7 +7,7 @@ from users.models import User
 from utils.email import EmailManager
 
 
-@shared_task(queue='low', autoretry_for=(Exception, ), max_retries=3)
+@shared_task(queue='high', autoretry_for=(Exception, ), max_retries=3)
 def send_activation_email(email: str) -> Optional[bool]:
     """
     Задача celery на отправку письма активации
@@ -22,7 +22,7 @@ def send_activation_email(email: str) -> Optional[bool]:
             return True
 
 
-@shared_task(queue='low', autoretry_for=(Exception, ), max_retries=3)
+@shared_task(queue='high', autoretry_for=(Exception, ), max_retries=3)
 def send_password_reset_email(email: str) -> Optional[bool]:
     """
     Задача celery на отправку письма с данными о смене пароля

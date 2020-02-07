@@ -1,0 +1,61 @@
+/* Floating Windows Windows CSS Override */
+
+
+/* region auth  */
+
+#auth .floating-window-body-content {
+    padding-top: 0 !important;
+}
+
+#auth .floating-window-header-content .middle {
+    display: flex;
+}
+
+#auth .floating-window-header-content .left-side,
+#auth .floating-window-header-content .middle {
+    font-size: 1rem;
+    font-weight: normal;
+    width: 100%;
+    justify-content: center;
+}
+
+#auth .floating-window-header {
+    border-bottom: none !important;
+}
+
+/* endregion */
+
+
+.fw-1 .floating-window-row .floating-window-header-content .left-side,
+.fw-1 .floating-window-row .floating-window-header-content .right-side{
+    display: flex;
+    align-items: center;
+}
+
+.floating-background {
+    background-color: #000;
+    opacity: 0.5;
+}
+
+
+/* region Media */
+
+@media screen and (max-width: 976px) {
+    #auth {
+        left: 25% !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #auth {
+        left: 15% !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #auth {
+        left: 2% !important;
+    }
+}
+
+/* endregion */

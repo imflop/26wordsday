@@ -48,13 +48,16 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 )
 # Third party apps
-THIRD_PARTY_APPS = ()
+THIRD_PARTY_APPS = (
+    'flex_forms',
+    'floating_windows',
+    'template_schema',
+    'template_schema_extensions'
+)
 # Apps specific for this project
 LOCAL_APPS = (
     'users',
     'words',
-    'template_schema',
-    'template_schema_extensions'
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

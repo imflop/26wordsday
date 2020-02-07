@@ -1,0 +1,20 @@
+/* Floating Windows Tray CSS Override */
+
+
+#landing-tray.tray {
+    max-height: calc(100vh - 3.5rem);
+    overflow: hidden;
+}
+
+#landing-tray .tray-row.tray-body {
+    overflow-y: scroll;
+}
+
+#landing-tray .tray-row.tray-body::-webkit-scrollbar {
+    display: none;
+}
+
+.tray .tray-header, .tray .tray-footer {
+    border-bottom: none;
+    box-shadow: rgba(0, 0, 0, 0.08) 0 0 0 0.0417rem, rgba(0, 0, 0, 0.3) 0 0 0.417rem 0;
+}
