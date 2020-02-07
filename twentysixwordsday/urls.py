@@ -13,9 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth.views import LogoutView
 from django.urls import path, include
+from django.conf.urls.static import static
 
 from users.views import AccountActivationDoneView, AccountActivationConfirmView, \
     SendActivationEmail, SignInLandingFormView, SignInFormView, \
@@ -45,3 +48,18 @@ urlpatterns = [
     path('password-reset/confirm/<uidb64>/<token>/', PasswordResetConfirmFormView.as_view(), name="password_reset_confirm"),
     path('password-reset/complete/', PasswordResetCompleteView.as_view(), name="password_reset_complete"),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += (
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )
+
+if not settings.DEBUG:
+    handler400 = 'twentysixwordsday.views.error_400_view'
+    handler403 = 'twentysixwordsday.views.error_403_view'
+    handler404 = 'twentysixwordsday.views.error_404_view'
+    handler500 = 'twentysixwordsday.views.error_500_view'
