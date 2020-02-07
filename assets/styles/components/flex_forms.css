@@ -3,12 +3,13 @@
 
 /* region sign-in form  */
 
-.flex-form.sign-in-form {
-    width: 420px;
+.flex-form.sign-in-form, .flex-form.sign-up-form, .flex-form.password-reset-form {
+    width: 17.5rem;
     font-weight: normal;
 }
 
-.flex-form.sign-in-form .flex-field-main-label:not([for="id_remember_me"]) {
+.flex-form.sign-in-form .flex-field-main-label:not([for="id_remember_me"]),
+.flex-form.sign-up-form .flex-field-main-label, .flex-form.password-reset-form label {
     display: none !important;
 }
 
@@ -17,7 +18,10 @@
 }
 
 .flex-form.sign-in-form .flex-fields-column:nth-of-type(4) .static-flex-button,
-.flex-form.sign-in-form .flex-fields-column:nth-of-type(5) .static-flex-button {
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(5) .static-flex-button,
+.flex-form.sign-up-form .flex-fields-column:nth-of-type(5) .static-flex-button,
+.flex-form.sign-up-form .flex-fields-column:nth-of-type(6) .static-flex-button,
+.flex-form.password-reset-form .flex-fields-column:nth-of-type(3) .static-flex-button {
     justify-content: center;
     display: flex;
 }
@@ -27,35 +31,50 @@
 }
 
 .flex-form.sign-in-form .flex-fields-column:nth-of-type(3) .flex-field-group label {
-    line-height: 25px;
+    line-height: 1rem;
 }
 
-.flex-form.sign-in-form .flex-fields-column:nth-of-type(5) {
-    margin-top: 15px;
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(5),
+.flex-form.sign-up-form .flex-fields-column:nth-of-type(6) {
+    margin-top: 0.625rem;
 }
 
 .flex-form.sign-in-form .flex-fields-row .flex-field-group label {
-    font-size: 14px !important;
+    font-size: 0.58rem !important;
     margin-bottom: 0;
 }
 
-.flex-form.sign-in-form .flex-fields-column {
-    padding: 5px;
+.flex-form.sign-in-form .flex-fields-column,
+.flex-form.sign-up-form .flex-fields-column,
+.flex-form.password-reset-form .flex-fields-column{
+    padding: 0.21rem;
 }
 
-/* endregion */
-
-.flex-form .flex-fields-row .flex-field-group.checkbox-as-row {
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(3) .flex-fields-row .flex-field-group:nth-of-type(1) {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
 }
+
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(3) .flex-fields-row .flex-field-group label {
+    padding-right: 0.417rem;
+}
+
+.flex-form.password-reset-form .static-field {
+    border: none !important;
+    box-shadow: none;
+    text-align: center;
+    font-weight: normal;
+    padding: 0 0 0.625rem 0 !important;
+}
+
+/* endregion */
 
 .flex-form a {
     color: #2196F3 !important;
 }
 
 .flex-form .checkbox-container .checkbox-checkmark:after {
-    left: 10px;
-    top: 6px;
+    left: 0.416rem;
+    top: 0.25rem;
 }

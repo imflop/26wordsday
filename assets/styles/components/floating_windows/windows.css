@@ -1,21 +1,25 @@
 /* Floating Windows Windows CSS Override */
 
 
+/* region auth  */
 
-/* region sign-in form  */
-
-#sign-in-modal .floating-window-body-content {
+#auth .floating-window-body-content {
     padding-top: 0 !important;
 }
 
-#sign-in-modal .floating-window-header-content .left-side {
-    font-size: 24px;
+#auth .floating-window-header-content .middle {
+    display: flex;
+}
+
+#auth .floating-window-header-content .left-side,
+#auth .floating-window-header-content .middle {
+    font-size: 1rem;
     font-weight: normal;
     width: 100%;
     justify-content: center;
 }
 
-#sign-in-modal .floating-window-header {
+#auth .floating-window-header {
     border-bottom: none !important;
 }
 
@@ -32,3 +36,26 @@
     background-color: #000;
     opacity: 0.5;
 }
+
+
+/* region Media */
+
+@media screen and (max-width: 976px) {
+    #auth {
+        left: 25% !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #auth {
+        left: 15% !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #auth {
+        left: 2% !important;
+    }
+}
+
+/* endregion */

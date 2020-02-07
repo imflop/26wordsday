@@ -12,8 +12,8 @@
 /* Tags */
 
 .content-words-list-tags-row {
-    border-top: 1px solid #d5cfdb;
-    border-bottom: 1px solid rgb(226, 219, 232);
+    border-top: 0.0417rem solid #d5cfdb;
+    border-bottom: 0.0417rem solid rgb(226, 219, 232);
 }
 
 .content-words-list-tags-col-title {
@@ -29,14 +29,14 @@
 /* Words List */
 
 .content-words-list-col-detail-sidebar {
-    flex: 0 0 400px;
-    border-left: 1px solid #ece9ef;
+    flex: 0 0 16.7rem;
+    border-left: 0.0417rem solid #ece9ef;
 }
 
 .content-words-list-row-words {
     height: calc(100% - 4.5rem);
-    border-bottom: 1px solid rgb(226, 219, 232);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, .03);
+    border-bottom: 0.0417rem solid rgb(226, 219, 232);
+    box-shadow: 0 0.0834rem 0 rgba(0, 0, 0, .03);
 }
 
 /* End Words List */
@@ -52,7 +52,7 @@
 
 .words-card {
     background-color: white;
-    border: 1px solid #ece9ef;
+    border: 0.0417rem solid #ece9ef;
     padding: 1rem;
     border-radius: 0.4rem;
     margin: 0.2rem;
