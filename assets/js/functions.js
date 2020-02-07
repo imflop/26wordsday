@@ -59,30 +59,67 @@ const twentysixwordsday = {
         const preloader = new messenger.fullScreen();
         // инициализация загрузчика контента по ajax.
         const ajax_loader = new FloatingAjaxLoader();
+        const icons_setup = {
+            'NEUTRAL': '/assets/img/logo_big_anim_4_inf.png',
+            'ERROR': '/assets/img/logo_big_anim_3.png'
+        };
+        const text_setup = {
+            'POST_TEXT': 'Sending to the server...',
+            'LOADING_TEXT': 'Loading from the server...'
+        };
+
         ajax_loader.preloader = preloader;
+        ajax_loader.loader_icon = icons_setup.NEUTRAL;
+        ajax_loader.loader_error_icon = icons_setup.ERROR;
+        ajax_loader.post_icon = icons_setup.NEUTRAL;
+        ajax_loader.post_error_icon = icons_setup.ERROR;
+        ajax_loader.post_text = text_setup.POST_TEXT;
+
         ajax_loader.initSignals();
+
+        const post_types = {
+            'LANDING_AUTH': 'landing_auth'
+        };
 
         ajax_loader.preparePOSTDataCallback = function (form_obj, data, post_type, data_options) {
 
+            // const container = $(data_options[ajax_loader.container_data_attr]);
+
+            switch (post_type) {
+                default:
+                    data = form_obj.serialize();
+                    break;
+            }
             return data;
         };
 
         ajax_loader.preparePostCallback = function (form_obj, data, post_type, data_options) {
 
             return function(response) {
-
+                switch (post_type) {
+                    case (post_types.LANDING_AUTH):
+                        if (response['errors']) {
+                            const new_form = $(response['form']).find(data_options[ajax_loader.form_data_attr]);
+                            form_obj.html(new_form.html());
+                        } else {
+                            window.location.reload();
+                        }
+                        break;
+                    default:
+                        window.location.reload();
+                }
             }
         };
     },
 
     initFloatingWindows: function () {
         const fw_windows = {
-            'SIGN_IN_MODAL': 'sign-in-modal'
+            'AUTH': 'auth'
         };
         // инициализация загрузчика всплывающих окон.
         const fw = new FloatingWindows();
         // здесь нужно перечислить id всплывающих окон, через запятую, к которым привязаны кнопки их вызова.
-        fw.initWindows(fw_windows.SIGN_IN_MODAL);
+        fw.initWindows(fw_windows.AUTH);
 
         $(document).on('floating-window:opened', function (event, window_id, options) {
             // отслеживание сигналов об открытии всплывающих окон для подгрузки в них контента.
