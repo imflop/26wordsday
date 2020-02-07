@@ -1,0 +1,26 @@
+{% extends 'system.html' %}
+
+{% load flex_forms %}
+
+{% block content_body %}
+    <div id="auth" class="fw-1 auth-window">
+        {% block header %}
+            <div class="floating-window-row floating-window-header">
+                <div class="floating-window-header-content">
+                    {% block header_content_left_side %}
+                        <div class="middle">{{ title }}</div>
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+        {% block body %}
+            <div class="floating-window-row floating-window-body">
+                <div class="floating-window-body-content">
+                    {% if form %}
+                        {% as_flex form %}
+                    {% endif %}
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

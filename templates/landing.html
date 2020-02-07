@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         {% load static %}
+        {% load i18n %}
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,51 +18,54 @@
             <div id="app-base-row" class="row">
                 <div id="app-base-col-content" class="col">
                     <div id="content-base-row" class="row">
-                        <div class="col-lg-8 landing-flex-col">
-                            <div class="row landing-logo-row">
-                                <a class="custom-link" href="{% url 'landing' %}">
-                                    <img src="/assets/img/logo_img.png">
-                                    <span>26 Words Day</span>
-                                </a>
-                            </div>
-                            <div class="row landing-content-row landing-left-side-main-row">
-                                <div class="landing-center-content">
-                                    <div class="landing-title-level-one">
-                                        Improve your language skills with us!
+                        {% block content %}
+                            <div class="col-lg-8 landing-flex-col">
+                                {% include 'blocks/page/_logo.html' %}
+                                <div class="row landing-content-row landing-left-side-main-row">
+                                    <div class="landing-center-content">
+                                        <div class="landing-title-level-one">
+                                            {% blocktrans %}
+                                                Improve your language skills with us!
+                                            {% endblocktrans %}
+                                        </div>
+                                        <div class="landing-title-level-two">
+                                            {% blocktrans %}
+                                                The «26 Words Day» project allows people to increase their knowledge of the
+                                                English language and learn a lot about the etymology and semantics of English words.
+                                            {% endblocktrans %}
+                                        </div>
+                                        <a href="{% url 'sign_in' %}" class="btn btn-lg btn-outline-orange">Join</a>
                                     </div>
-                                    <div class="landing-title-level-two">
-                                        The «26 Words Day» project allows people to increase their knowledge of the
-                                        English language and learn a lot about the etymology and semantics of English words.
-                                    </div>
-                                    <div class="btn btn-lg btn-outline-orange">Join</div>
                                 </div>
+                                {% include 'blocks/page/_footer.html' %}
                             </div>
-                            {% include 'blocks/page/_footer.html' %}
-                        </div>
-                        <div class="col-lg-4 landing-flex-col landing-right-col">
-                            <div class="row landing-content-row landing-toolbar">
-                                <button type="button"
-                                        class="btn btn-sm btn-outline-orange-inverse js-floating_window_open"
-                                        data-floating-window="sign-in-modal"
-                                        data-floating-window-title="Sign In"
-                                        data-floating-window-position="10%,35%"
-                                        data-floating-window-show-footer="false"
-                                        data-floating-window-set-background="body"
-                                        data-ajax-reload-content="false"
-                                        data-ajax-url=""
-                                        data-ajax-form="#sign-in-modal-form">
-                                    Sign in
-                                </button>
-                            </div>
-                            <div class="row landing-content-row landing-toolbar">
-                                {% include 'blocks/page/_tray.html' with tray_id='landing-tray' only %}
-                            </div>
-                        </div>
+                            {% block events %}
+                                <div class="col-lg-4 landing-flex-col landing-right-col">
+                                    <div class="row landing-content-row landing-toolbar">
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-orange-inverse js-floating_window_open"
+                                                data-floating-window="auth"
+                                                data-floating-window-title="{{ title }}"
+                                                data-floating-window-position="10%,35%"
+                                                data-floating-window-show-footer="false"
+                                                data-floating-window-set-background="body"
+                                                data-ajax-reload-content="false"
+                                                data-ajax-url=""
+                                                data-ajax-form="#auth-form">
+                                            {% trans 'Sign In' %}
+                                        </button>
+                                    </div>
+                                    <div class="row landing-content-row landing-toolbar">
+                                        {% include 'floating_windows/tray.html' with tray_id='landing-tray' only %}
+                                    </div>
+                                </div>
+                            {% endblock %}
+                            {% include 'blocks/floating_windows/sign_in_modal.html' with fw_id='auth' %}
+                        {% endblock %}
                     </div>
                 </div>
             </div>
         </div>
-        {% include 'blocks/floating_windows/sign_in_modal.html' with fw_id='sign-in-modal' form=form only %}
 
         {% include 'blocks/_scripts.html' %}
         {% include 'blocks/_custom_scripts.html' %}
