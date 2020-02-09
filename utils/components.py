@@ -1,4 +1,4 @@
-from flex_forms.components import BaseButton, HTMLElementType, BaseHtmlElement
+from flex_forms.components import BaseButton, HTMLElementType, BaseHtmlElement, MaterialIcon
 
 
 # region Flex Forms
@@ -58,3 +58,11 @@ class Link(BaseLink):
     def __str__(self):
         return self.render()
 
+
+class TemplateMaterialIcon(MaterialIcon):
+    """
+    Иконка material для использования в шаблонах (авторендеринг)
+    """
+
+    def __str__(self):
+        return self.render()

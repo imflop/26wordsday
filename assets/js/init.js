@@ -12,6 +12,7 @@ $(document).ready(function () {
     twentysixwordsday.initTray();
     twentysixwordsday.initFloatingAjax();
     twentysixwordsday.initFloatingWindows();
+    twentysixwordsday.initShowPasswordFeature();
 
     /*
     Waves Effects

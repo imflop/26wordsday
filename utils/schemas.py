@@ -1,3 +1,4 @@
+from django.urls import reverse
 from template_schema.components.basics import MaterialIcon, SingleButton, Badge
 from template_schema.handler import TemplateSchema
 from template_schema_extensions.components.navigation.components import Sidebar, Navbar, ProfileDropdown, \
@@ -143,6 +144,7 @@ class BaseApplicationSchema(TemplateSchema):
                 ),
                 'exit': ProfileDropdownMenuButton(
                     key='exit_button',
-                    title='Выход'
+                    title='Выход',
+                    html_params={'href': reverse('logout')}
                 )
             }

@@ -34,8 +34,8 @@ wcwidth==0.1.7
 Pillow==6.2.1
 
 # components
-btc-flex-forms==0.7
-btc-floating-windows==0.4
+btc-flex-forms==0.8
+btc-floating-windows==0.5
 git+https://github.com/MEADez/django-template-schema.git@master#egg=django-template-schema==0.4
 git+https://github.com/MEADez/dts-extensions.git@master#egg=dts-extensions==0.4
 
