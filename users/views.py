@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.template.response import SimpleTemplateResponse
 from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import ugettext_lazy as _
@@ -40,7 +42,7 @@ class SignInFormView(SignInBaseView):
     template_name = 'registration/base_auth.html'
 
 
-class SignInLandingFormView(CustomFormViewMixin, SignInBaseView):
+class SignInLandingFormView(SignInBaseView):
     """
     Представление для поддержки быстрого входа пользователя в систему со стороны landing page (модальное окно).
     """
@@ -97,7 +99,8 @@ class PasswordResetConfirmFormView(PasswordResetConfirmView):
 
     def dispatch(self, *args, **kwargs):
         response = super().dispatch(*args, **kwargs)
-        if not self.validlink:
+        # перенаправление на кастомную страницу с сообщением об истекшем токене.
+        if isinstance(response, SimpleTemplateResponse) and 'form' not in response.context_data:
             response = redirect('password_reset_unsuccessful')
         return response
 
@@ -132,6 +135,10 @@ class AccountActivationDoneView(MessageViewMixin, TemplateView):
                      'or check the spam folder.')
 
 
+_sign_in_link = Link(_('Sign In'), html_params={'href': reverse_lazy('sign_in')})
+_reset_password_link = Link(_('Reset password'), html_params={'href': reverse_lazy('password_reset')})
+
+
 class AccountActivationConfirmView(View):
     """
     Представление для активации аккаунта пользователя.
@@ -154,8 +161,9 @@ class AccountActivationConfirmView(View):
             context = dict(
                 message_subject=_('Your account has been successfully verified!'),
                 message_text=_('To log in, go to the login page.'),
-                message_icon=Img(html_params={'src': '/assets/img/logo_big_anim_4.png',
-                                              'width': '120', 'height': '120'})
+                message_icon=Img(
+                    html_params={'src': '/assets/img/logo_big_anim_4.png', 'width': '120', 'height': '120'}),
+                message_link=_sign_in_link
             )
 
             response = render(request, self.template_name, context)
@@ -194,7 +202,7 @@ class PasswordResetUnsuccessfulView(MessageViewMixin, TemplateView):
     message_icon = Img(html_params={'src': '/assets/img/logo_big_anim_3.png', 'width': '200', 'height': '200'})
     message_subject = _('Password reset token expired.')
     message_text = _('Please try resetting your password again.')
-    message_link = Link(_('Reset password'), html_params={'href': reverse_lazy('password_reset')})
+    message_link = _reset_password_link
 
 
 class PasswordResetCompleteView(MessageViewMixin, TemplateView):
@@ -207,7 +215,7 @@ class PasswordResetCompleteView(MessageViewMixin, TemplateView):
     message_icon = Img(html_params={'src': '/assets/img/logo_big_anim_4.png', 'width': '120', 'height': '120'})
     message_subject = _('You have successfully changed your password!')
     message_text = _('Now you can log in with the new password using the link below.')
-    message_link = Link(_('Sign In'), html_params={'href': reverse_lazy('sign_in')})
+    message_link = _sign_in_link
 
 
 class ProfileDetails(DetailView):

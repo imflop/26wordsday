@@ -99,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LOGIN_URL = '/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = '/words/'
+LOGIN_REDIRECT_URL = '/words/list/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logout-redirect-url
 LOGOUT_REDIRECT_URL = '/'
@@ -143,7 +143,7 @@ TEMPLATES = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -174,3 +174,18 @@ MEDIA_ROOT = str(ROOT_DIR("media"))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
+
+
+# django-debug-toolbar
+# ------------------------------------------------------------------------------
+MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+
+INSTALLED_APPS += ('debug_toolbar',)
+
+DEBUG_TOOLBAR_CONFIG = {
+    'DISABLE_PANELS': [
+        'debug_toolbar.panels.redirects.RedirectsPanel',
+        'debug_toolbar.panels.templates.TemplatesPanel',
+    ],
+    'SHOW_TEMPLATE_CONTEXT': True,
+}

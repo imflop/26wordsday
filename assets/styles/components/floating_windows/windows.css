@@ -41,19 +41,19 @@
 /* region Media */
 
 @media screen and (max-width: 976px) {
-    #auth {
+    #auth:not(.auth-window) {
         left: 25% !important;
     }
 }
 
 @media screen and (max-width: 768px) {
-    #auth {
+    #auth:not(.auth-window) {
         left: 15% !important;
     }
 }
 
 @media screen and (max-width: 576px) {
-    #auth {
+    #auth:not(.auth-window) {
         left: 2% !important;
     }
 }

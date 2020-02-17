@@ -118,6 +118,18 @@ body{
     background: #218ae5 !important;
 }
 
+.password-toggle-btn {
+    cursor: pointer;
+}
+
+.password-toggle-btn:hover {
+    opacity: 0.9;
+}
+
+.password-toggle-btn.active {
+    opacity: 0.5;
+}
+
 /* endregion */
 
 /* region System Messages */

@@ -3,13 +3,14 @@
 
 /* region sign-in form  */
 
-.flex-form.sign-in-form, .flex-form.sign-up-form, .flex-form.password-reset-form {
+.flex-form.sign-in-form, .flex-form.sign-up-form, .flex-form.password-reset-form, .flex-form.password-confirm-form {
     width: 17.5rem;
     font-weight: normal;
 }
 
 .flex-form.sign-in-form .flex-field-main-label:not([for="id_remember_me"]),
-.flex-form.sign-up-form .flex-field-main-label, .flex-form.password-reset-form label {
+.flex-form.sign-up-form .flex-field-main-label, .flex-form.password-reset-form label,
+.flex-form.sign-up-form .flex-field-main-label, .flex-form.password-confirm-form label {
     display: none !important;
 }
 
@@ -21,7 +22,8 @@
 .flex-form.sign-in-form .flex-fields-column:nth-of-type(5) .static-flex-button,
 .flex-form.sign-up-form .flex-fields-column:nth-of-type(5) .static-flex-button,
 .flex-form.sign-up-form .flex-fields-column:nth-of-type(6) .static-flex-button,
-.flex-form.password-reset-form .flex-fields-column:nth-of-type(3) .static-flex-button {
+.flex-form.password-reset-form .flex-fields-column:nth-of-type(3) .static-flex-button,
+.flex-form.password-confirm-form .flex-fields-column:nth-of-type(4) .static-flex-button {
     justify-content: center;
     display: flex;
 }
@@ -39,14 +41,15 @@
     margin-top: 0.625rem;
 }
 
-.flex-form.sign-in-form .flex-fields-row .flex-field-group label {
+.flex-form.sign-in-form .flex-fields-column:nth-of-type(3) .flex-fields-row .flex-field-group label {
     font-size: 0.58rem !important;
     margin-bottom: 0;
 }
 
 .flex-form.sign-in-form .flex-fields-column,
 .flex-form.sign-up-form .flex-fields-column,
-.flex-form.password-reset-form .flex-fields-column{
+.flex-form.password-reset-form .flex-fields-column,
+.flex-form.password-confirm-form .flex-fields-column {
     padding: 0.21rem;
 }
 
@@ -60,7 +63,8 @@
     padding-right: 0.417rem;
 }
 
-.flex-form.password-reset-form .static-field {
+.flex-form.password-reset-form .static-field,
+.flex-form.password-confirm-form .static-field {
     border: none !important;
     box-shadow: none;
     text-align: center;

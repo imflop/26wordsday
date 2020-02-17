@@ -74,12 +74,7 @@ const twentysixwordsday = {
         ajax_loader.post_icon = icons_setup.NEUTRAL;
         ajax_loader.post_error_icon = icons_setup.ERROR;
         ajax_loader.post_text = text_setup.POST_TEXT;
-
         ajax_loader.initSignals();
-
-        const post_types = {
-            'LANDING_AUTH': 'landing_auth'
-        };
 
         ajax_loader.preparePOSTDataCallback = function (form_obj, data, post_type, data_options) {
 
@@ -94,19 +89,15 @@ const twentysixwordsday = {
         };
 
         ajax_loader.preparePostCallback = function (form_obj, data, post_type, data_options) {
-
             return function(response) {
                 switch (post_type) {
-                    case (post_types.LANDING_AUTH):
+                    default:
                         if (response['errors']) {
-                            const new_form = $(response['form']).find(data_options[ajax_loader.form_data_attr]);
-                            form_obj.html(new_form.html());
+                            //
                         } else {
-                            window.location.reload();
+                            //
                         }
                         break;
-                    default:
-                        window.location.reload();
                 }
             }
         };
@@ -118,11 +109,30 @@ const twentysixwordsday = {
         };
         // инициализация загрузчика всплывающих окон.
         const fw = new FloatingWindows();
+        fw.set_windows_ids_to_url = true;
+        fw.push_windows_events_to_history = true;
         // здесь нужно перечислить id всплывающих окон, через запятую, к которым привязаны кнопки их вызова.
         fw.initWindows(fw_windows.AUTH);
 
         $(document).on('floating-window:opened', function (event, window_id, options) {
             // отслеживание сигналов об открытии всплывающих окон для подгрузки в них контента.
         });
+    },
+
+    initShowPasswordFeature: function () {
+        $(document).on('click', '.js-password_toggle_btn', function (event) {
+            const input = $(this).closest('.js-input_wrapper').find('input');
+            const button = $(this);
+
+            if (input.attr('type') === 'password') {
+                input.attr('type', 'text');
+                button.addClass('active');
+            } else {
+                input.attr('type', 'password');
+                button.removeClass('active');
+            }
+
+            event.preventDefault();
+        })
     }
 };
